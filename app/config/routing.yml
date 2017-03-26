@@ -1,3 +1,3 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+louvre_shop:
+    resource: "@LouvreShopBundle/Resources/config/routing.yml"
+    prefix:   /
