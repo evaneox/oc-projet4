@@ -1,1 +1,7 @@
+louvre_order :
+    path:    /
+    defaults:    {_controller: LouvreShopBundle:Booking:index}
 
+louvre_ticket_mentions:
+    path:     /legal
+    defaults: { _controller: LouvreShopBundle:Booking:mentionsView}

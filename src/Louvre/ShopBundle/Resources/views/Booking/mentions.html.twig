@@ -1,0 +1,20 @@
+{% extends "LouvreShopBundle:Default:layout.html.twig" %}
+
+{% block header %}
+    <h1>{{ 'legal.title'|trans }}</h1>
+    <p>{{ 'legal.description'|trans }}</p>
+{% endblock %}
+
+{% block position %}
+    {{ 'header.position.legal'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box_style_2" id="order_process">
+                {{ ('legal.text')|trans|raw }}</p>
+            </div>
+        </div>
+    </div><!-- End row -->
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "LouvreShopBundle:Default:layout.html.twig" %}
+
+{% block header %}
+    {% include "LouvreShopBundle:Default:subheader.html.twig" with {'current': 'first'} %}
+{% endblock %}
+
+{% block position %}
+    {{ 'header.position.ticketing'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-9">
+            <div class="box_style_2" id="order_process">
+            </div>
+        </div>
+
+        <div class="col-md-3" id="sidebar">
+            <div class="theiaStickySidebar">
+                <div id="cart_box">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

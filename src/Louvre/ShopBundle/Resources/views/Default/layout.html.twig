@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<html>
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta name="description" content="{{ 'site.description'|trans }}">
+    <meta name="author" content="Jérémy Bouhour">
+    <title>{{ 'site.title'|trans }}</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="{{ asset('css/skins/square/grey.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/base.css') }}" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- Header ================================================ -->
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col--md-8 col-sm-8 col-xs-8">
+                    <a href="{{ path('louvre_order')}}" id="logo">
+                        <img src="{{ asset('img/logo.png') }}" width="103" height="33" alt="{{ 'header.logo_alt'|trans }}" data-retina="true">
+                    </a>
+                    <h1 class="hidden-xs">{{ 'header.title'|trans }}</h1>
+                </div>
+                <div class="col--md-4 col-sm-4 col-xs-4">
+                    <form>
+                        <select class="form-control" name="lang" id="lang">
+                            <option value="fr" selected>{{ 'header.lang.french'|trans }}</option>
+                            <option value="en">{{ 'header.lang.english'|trans }}</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SubHeader =============================================== -->
+    <section class="parallax-window" id="short" >
+        <div id="subheader">
+            <div id="sub_content">
+                {% block header %}{% endblock %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation ================================================== -->
+    <div id="position">
+        <div class="container">
+            <ul>
+                <li><a href="{{ path('louvre_order')}}">{{ 'header.position.home'|trans }}</a></li>
+                <li>{% block position %}{% endblock %}</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Content ================================================== -->
+    <div class="container margin_60_35">
+        {% block body %}{% endblock %}
+    </div>
+
+    <!-- Footer ================================================== -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div id="gotoTop" class="icon-angle-up"></div>
+                    <ul>
+                        <li><h3>{{ 'footer.secure'|trans }}</h3></li>
+                        <li><i class="fa fa-cc-visa" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-cc-mastercard" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-cc-stripe" aria-hidden="true"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="social_footer">
+                        <p>© 2017 {{ 'footer.copyright.site_name'|trans }} | {{ 'footer.copyright.author'|trans }} Jérémy Bouhour | <a href="{{ path('louvre_ticket_mentions') }}">{{ 'footer.copyright.legal'|trans }}</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Javascript ================================================== -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/icheck.min.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}" ></script>
+
+</body>
+</html>
