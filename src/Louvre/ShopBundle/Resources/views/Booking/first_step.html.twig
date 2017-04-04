@@ -11,15 +11,57 @@
 {% block body %}
     <div class="row">
         <div class="col-md-9">
-            <div class="box_style_2" id="order_process">
-            </div>
-        </div>
-
-        <div class="col-md-3" id="sidebar">
-            <div class="theiaStickySidebar">
-                <div id="cart_box">
+            <div class="bg-info alert">
+                {{ 'forgot_ticket.explain'|trans }} <a data-toggle="collapse" href="#lostTicket" aria-expanded="false" aria-controls="lostTicket">{{ 'forgot_ticket.action_text'|trans }} </a>
+                <div class="collapse" id="lostTicket">
+                    <br />
+                    <form>
+                        <div class="form-group">
+                            <label>{{ 'forgot_ticket.form.identifier.label'|trans }}</label>
+                            <input type="text" class="form-control" name="order_identifier" placeholder="{{ 'forgot_ticket.form.identifier.placeholder'|trans }}" required="required" autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn btn-default">{{ 'forgot_ticket.form.submit'|trans }}</button>
+                    </form>
                 </div>
             </div>
+            <div class="bg-warning alert">
+                <span class="glyphicon glyphicon-info-sign"></span>
+                <p>{{ 'reduce_price_info'|trans }}</p>
+            </div>
+            <div class="box_style_2" id="order_process">
+                <h2 class="inner">{{ 'step_one.title'|trans }}</h2>
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label>{{ 'step_one.form.entry_date.label'|trans }}</label>
+                                <div class="input-group date" id="datetimepicker">
+                                    <span class="input-group-addon" id="dateTimeControl">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                    {{ form_widget(form.entryDate, {'attr': {'placeholder': "date_format" , 'class': 'form-control'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label>{{ 'step_one.form.ticket_counter.label'|trans }}</label>
+                                <select id="ticketCounterControl" class="form-control" disabled="disabled">
+                                    <option value="1">1</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.fullDay) }}
+                    </div>
+                    <hr />
+                    <div id="tickets_visitors" data-prototype="{% filter escape %}{% include 'LouvreShopBundle:Form:visitorType.html.twig' with { 'form': form.visitors.vars.prototype } %}{% endfilter %}"></div>
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+            </div>
         </div>
+        {% include "LouvreShopBundle:Default:shopping_box.html.twig" with {'current': 'first'} %}
     </div>
 {% endblock %}

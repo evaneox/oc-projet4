@@ -17,6 +17,7 @@
 @import url("fontello/css/fontello.min.css");
 @import url("elegant_font/elegant_font.min.css");
 @import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans:300,400');
+@import url("bootstrap-datetimepicker.min.css");
 
 /*----------------------------------
    PAGE
@@ -33,7 +34,6 @@ body {
     color: #555;
     background-color: #f5f5f5;
     font-family: 'Open Sans', sans-serif;
-
 }
 
 /*----------------------------------
@@ -50,6 +50,7 @@ a{
     transition: all .2s ease;
     outline: 0;
     color: #E74C3C;
+    font-weight: bolder;
 }
 
 a:focus,
@@ -227,7 +228,7 @@ header select{
 }
 
 .parallax-window {
-    /*margin-top: 40px;*/
+    margin-top: 40px;
     min-height: 470px;
     background: 0 0;
     position: relative;
@@ -325,7 +326,8 @@ footer h3 {
 }
 
 footer a {
-    color: #555
+    color: #555;
+    font-weight: bolder;
 }
 
 footer a:hover {
@@ -391,16 +393,16 @@ footer {
 /*----------------------------------
    BUTTON
    ------------------------------------*/
+
 .btn_full,
 a.btn_full {
     font-family: inherit;
     color: #fff;
     cursor: pointer;
     outline: 0;
-    font-size: 12px;
+    font-size: 10px;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
-    text-transform: uppercase;
     text-align: center
 }
 
@@ -408,8 +410,8 @@ a.btn_full {
 a.btn_full {
     border: none;
     width: 100%;
-    background: #85c99d;
-    padding: 12px 20px;
+    background: #009393;
+    padding: 10px 10px;
     transition: all .3s;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -421,7 +423,7 @@ a.btn_full {
 
 .btn_full:hover,
 a.btn_full:hover {
-    background: #333
+    background: #777;
 }
 
 .btn_full_outline,
@@ -480,6 +482,25 @@ a.btn_full_outline:hover {
     margin-bottom: 20px
 }
 
+.form-control[readonly]{
+    background-color: #fefefe !important;
+}
+
+.checkbox label, .radio label{
+    padding-left: 0 !important;
+}
+
+.checkbox, .radio{
+    display: inline !important;
+    margin-right: 3px;
+}
+
+.form-inline select{
+    margin-right: 30px !important;
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+}
 
 /*----------------------------------
    CONTENT
@@ -622,7 +643,27 @@ a.remove_item:hover {
     font-size: 12px
 }
 
+td.small{
+    width: 50px;
+}
 
+/*----------------------------------
+   CONTENT
+   ------------------------------------*/
+.alert{
+    font-size: 14px;
+}
+
+.alert span{
+    float: left;
+    top: 5px;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.alert p{
+    margin-left: 30px;
+}
 /*----------------------------------
    RESPONSIVE
    ------------------------------------*/

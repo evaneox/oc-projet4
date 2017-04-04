@@ -14,13 +14,6 @@
             <div class="box_style_2" id="order_process">
             </div>
         </div>
-
-        <div class="col-md-3" id="sidebar">
-            <div class="theiaStickySidebar">
-                <div id="cart_box">
-                </div>
-            </div>
-        </div>
-
+        {% include "LouvreShopBundle:Default:shopping_box.html.twig" with {'current': 'second'} %}
     </div>
 {% endblock %}

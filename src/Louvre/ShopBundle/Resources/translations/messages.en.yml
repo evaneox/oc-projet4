@@ -1,171 +1,187 @@
 site:
-    description : Online ticket booking for the Louvre museum
-    title : Louvre - Online ticket booking
+    description: Online ticket booking for the Louvre museum
+    title: Louvre - Online ticket booking
 
 header:
-    title : Online ticket booking
-    logo_alt : Logo of the Louvre museum
-    lang :
-        french : Français
-        english : English
-    position :
-        home : Home
+    title: Online ticket booking
+    logo_alt: Logo of the Louvre museum
+    lang:
+        french: Français
+        english: English
+    position:
+        home: Home
         legal: Legal notice
-        ticketing : Ticketing
+        ticketing: Ticketing
+#############################################
+#  TRADUCTION GENERALE
+##############################################################
 
 subheader:
-    title : Book your tickets
-    first_step : Your tickets
-    second_step : Payment
-    third_step : Confirmation
+    title: Book your tickets
+    first_step: Your tickets
+    second_step: Payment
+    third_step: Confirmation
 
 footer:
-    secure : 100% secure payment
-    copyright :
-        site_name : Louvre ticket booking
-        author : Developped by
-        legal : Legal notice
+    secure: 100% secure payment
+    copyright:
+        site_name: Louvre ticket booking
+        author: Developped by
+        legal: Legal notice
+
+date_format: yyyy-mm-dd
+
+opening_hours:
+    full: 9am to 6pm
+    half: 2pm to 6pm
+
+#############################################
+#  PANNIER
+##############################################################
+Shopping_box:
+    title: Your order
+    action_one: Go to Payment
+    action_two: Confirm payment
+    opening_hours:
+        full: 9am to 6pm
+        half: 2pm to 6pm
+
+#############################################
+#  PAGE DE COMMANDE ETAPE 1
+#############################################################
+
+forgot_ticket:
+    explain: In case of loss of tickets, you can retrieve them by
+    action_text: clicking here
+    form:
+        identifier:
+            label: Order identification
+            placeholder: Email or confirmation code
+        submit: Resending
+
+reduce_price_info: For reduced rates (students, museum staff, a department of the Ministry of Culture, ...), Please bring your proof of identity on the day of the visit.
+capacity_exceed : Sorry but the museum seems complete for this date, please choose another date.
+
+step_one:
+    title: Your tickets
+    form:
+        entry_date:
+            label: Date of visit
+            full: Full day
+            half: Half day
+        ticket_counter:
+            label: Number of tickets
+        name:
+            label: Name
+            placeholder: Your name
+        surname:
+            label: family name
+            placeholder: Your family name
+        birthday:
+            label: Birthday date
+        country:
+            label: Country
+        reduced:
+            label: Reduced price
+
+#############################################
+#  PAGE MENTIONS LEGALES
+##############################################################
 
 legal:
-    title : Legal notice
-    description : Consult the legal mentions of our site.
-    text : >
+    title: Legal notice
+    description: Consult the legal mentions of our site.
+    text: >
         <h2>1. Presentation of the site.</h2><br />
-
         <p>This website has been produced as part of a training course for Openclassroom and has no real link to the official website of the Louvre Museum.</p><br />
-
         <p>According to article 6 of Law No. 2004-575 of June 21, 2004 for confidence in the digital economy,
         Users of the http://evaneox.com/projet4 site are given the identity of the different
         Stakeholders in its implementation and follow-up:</p><br />
-
         <b>Owner :</b> Jérémy BOUHOUR – – lille, France<br />
         <b>Creator :</b> Jérémy BOUHOUR'<br />
         <b>Publisher :</b> Jérémy BOUHOUR – csfrance_noob@hotmail.fr<br />
         The publication manager is a natural person or a legal entity.<br />
         <b>Webmaster :</b> Jérémy BOUHOUR – csfrance_noob@hotmail.fr<br />
         <b>Host :</b> OVH – 2 RUE KELLERMANN 59100 ROUBAIX<br /><br />
-
         <h2>2. General conditions of use of the site and the services offered.</h2><br />
-
         <p>The use of the site http://evaneox.com/projet4 implies the full acceptance of the general conditions of use described hereafter.
         These Terms of Use may be amended or supplemented at any time,
         The users of the site http://evaneox.com/projet4 are therefore invited to consult them on a regular basis.</p><br />
-
         <p>This site is normally accessible to users at any time.
         An interruption for reasons of technical maintenance can however be decided by Jérémy BOUHOUR,
         Who will then endeavor to communicate to the users beforehand the dates and times of the intervention.</p><br />
-
         <p>The site http://evaneox.com/projet4 is updated regularly by Jérémy BOUHOUR.
         In the same way, the legal notices can be modified at any time: they nevertheless impose on the user who is invited to refer to it
         As often as possible in order to take note of them.</p><br />
-
         <h2>3. Description of services provided.</h2><br />
-
         <p>The purpose of the site http://evaneox.com/projet4 is to provide information on all of the company's activities.</p><br />
-
         <p>Jérémy BOUHOUR endeavors to provide as precise information as possible on the site http://evaneox.com/projet4.
         However, it can not be held responsible for omissions, inaccuracies and deficiencies in the updating,
         Whether by its own act or by the third party partners providing it.</p><br />
-
         <p>All the information indicated on the site http://evaneox.com/projet4 are given as an indication, and are likely to evolve.
         In addition, the information on the site http://evaneox.com/projet4 is not exhaustive.
         They are subject to changes since they were put online.</p><br />
-
         <h2>4. Contractual limitations on technical data.</h2>
-
         <p>The site uses JavaScript technology.</p><br />
-
         <p>The website can not be held responsible for material damage related to the use of the site.
         In addition, the user of the site agrees to access the site using a recent material,
         Not containing viruses and with a latest-generation browser up-to-date</p><br />
-
         <h2>5. Intellectual Property and Counterfeiting.</h2>
-
         <p>Jérémy BOUHOUR owns the intellectual property rights or holds the rights of use on all the elements accessible on the site,
         Including text, images, graphics, logo, icons, sounds, software.</p><br />
-
         <p>Any reproduction, representation, modification, publication, adaptation of all or part of the elements of the site,
         Whatever the means or the process used, is prohibited, without prior written authorization of: Jérémy BOUHOUR.</p><br />
-
         <p>Any unauthorized use of the site or any of its contents shall be deemed to constitute an infringement and shall be prosecuted in accordance with
         To the provisions of articles L.335-2 and following of the Code of Intellectual Property.</p><br />
-
         <h2>6. Limitations of Liability.</h2><br />
-
         <p>Jérémy BOUHOUR can not be held responsible for the direct and indirect damages caused to the user's equipment,
         When accessing the http://evaneox.com/projet4 site, resulting either from the use of equipment that does not meet the specifications indicated in point 4,
         Or the occurrence of a bug or incompatibility.</p><br />
-
         <p>Jérémy BOUHOUR can also not be held responsible for indirect damages (such as a loss of market or loss of a chance)
         Consequence of the use of the site http://evaneox.com/projet4.</p><br />
-
         <p>Interactive spaces (possibility to ask questions in the contact area) are available to users. Jérémy BOUHOUR reserves the right to delete,
         Without prior notice, any content deposited in this space that would contravene the legislation applicable in France, in particular the provisions on data protection.
         If necessary, Jérémy BOUHOUR also reserves the right to challenge the civil and / or criminal liability of the user,
         Particularly in the case of a racist, offensive, defamatory or pornographic message, whatever the medium used (text, photograph ...).</p><br />
-
         <h2>7. Management of personal data.</h2><br />
-
         <p>In France, personal data are protected by Act No. 78-87 of 6 January 1978, Law No. 2004-801 of 6 August 2004,
         Article L. 226-13 of the Criminal Code and the European Directive of 24 October 1995.</p><br />
-
         <p>On the occasion of the use of the site http://evaneox.com/projet4, can be collected: the URL of the links through which the user has accessed the site http://evaneox.com/projet4 ,
         The user's access provider, the Internet Protocol (IP) address of the user.</p><br />
-
         <p>In any case Jérémy BOUHOUR collects personal information relating to the user only for the need of certain services offered by the site http://evaneox.com/projet4.
         The user provides this information with full knowledge of the facts, in particular when he himself carries out their input.
         It is then specified to the user of the site http://evaneox.com/projet/openclassroom/projet1 the obligation or not to provide this information.</p><br />
-
         <p>In accordance with the provisions of articles 38 and following of the law 78-17 of 6 January 1978 relating to data processing, files and freedoms,
         Any user has the right to access, rectify and oppose personal data concerning him, by making his written and signed request,
         Accompanied by a copy of the identity document with the signature of the holder of the document, specifying the address to which the reply should be sent.</p><br />
-
         <p>No personal information of the user of the site http://evaneox.com/projet1 is published without the knowledge of the user, exchanged, transferred, ceded or sold on any medium to third parties.
         Only the hypothesis of the redemption of Jérémy BOUHOUR and its rights would allow the transmission of the said information to the possible purchaser who would in turn be kept of the same
         Obligation to retain and modify the data vis-à-vis the user of the site http://evaneox.com/projet4.</p><br />
-
         <p>The site is not declared to the CNIL because it does not collect personal information.</p><br />
-
         <p>The databases are protected by the provisions of the law of 1 July 1998 transposing Directive 96/9 of 11 March 1996 on the legal protection of databases.</p><br />
-
         <h2>8. Hypertext links and cookies.</h2><br />
-
         <p>The site http://evaneox.com/projet1 contains a number of hyperlinks to other sites, set up with the authorization of Jérémy BOUHOUR.
         However, Jérémy BOUHOUR does not have the possibility to verify the content of the sites thus visited, and will therefore assume no responsibility as a result.</p><br />
-
         <p>Browsing the site http://evaneox.com/projet4 is likely to cause the installation of cookie (s) on the user's computer.
         A cookie is a small file, which does not allow user identification but records information about a computer's navigation on a site.
         The data thus obtained are intended to facilitate the subsequent navigation on the site, and are also intended to permit various measures of attendance.</p><br />
-
         <p>Refusal to install a cookie may result in the inability to access certain services.
         The user can however configure his computer as follows, to refuse the installation of cookies:</p><br />
-
         <p>Under Internet Explorer: tool tab (pictogram in the form of a cog in the top right) / internet options. Click Confidentiality and choose Block All Cookies. Confirm with OK.</p><br />
-
         <p>Under Firefox: At the top of the browser window, click the Firefox button, then go to the Options tab. Click on the Privacy tab.
         Set the Retention rules to: use the custom settings for the history. Finally uncheck it to disable cookies.</p><br />
-
         <p>Under Safari: Click at the top right of the browser on the menu pictogram (symbolized by a cog). Select Settings.
         Click Show Advanced Settings. In the "Privacy" section, click Content Settings. In the "Cookies" section, you can block cookies.</p><br />
-
         <p>Under Chrome: Click on the upper right of the browser on the menu pictogram (symbolized by three horizontal lines). Select Settings.
         Click Show Advanced Settings. In the "Confidentiality" section, click Preferences.
         In the "Privacy" tab, you can block cookies.</p><br />
-
         <h2>9. Applicable law and attribution of jurisdiction.</h2><br />
-
         <p>Any dispute relating to the use of the site http://evaneox.com/projet4 is subject to French law.
         Exclusive jurisdiction shall be conferred on the competent courts of Paris.</p><br />
-
         <h2>10. The main laws concerned.</h2><br />
-
         <p>Law No. 78-17 of 6 January 1978, in particular amended by Act No. 2004-801 of 6 August 2004 relating to data processing, files and freedoms.</p><br />
-
         <p>Law No. 2004-575 of 21 June 2004 for confidence in the digital economy.</p><br />
-
         <h2>11. Lexicon.</h2><br />
-
         <p>User: Internet user connecting, using the aforementioned site.</p><br />
-
         <p>Personal information: "information which permits, in any form whatsoever, directly or indirectly,
         The identification of the natural persons to whom they apply "(Article 4 of Law No. 78-17 of 6 January 1978).</p><br />

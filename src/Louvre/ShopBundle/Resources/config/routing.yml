@@ -1,7 +1,15 @@
+## Page d'accueil
 louvre_order :
     path:    /
     defaults:    {_controller: LouvreShopBundle:Booking:index}
 
+## Mentions légales
 louvre_ticket_mentions:
     path:     /legal
     defaults: { _controller: LouvreShopBundle:Booking:mentionsView}
+
+## Web service
+louvre_webservice_quota:
+    path:     /webservice/booking/quota
+    defaults: { _controller: LouvreShopBundle:Webservice:quota}
+    methods: [POST]

@@ -1,0 +1,29 @@
+<div class="col-md-3" id="sidebar">
+    <div class="theiaStickySidebar">
+        <div id="cart_box">
+            <h3>{{ 'Shopping_box.title'|trans }} <i class="icon_cart_alt pull-right"></i></h3>
+            <table class="table table_summary">
+                <tbody>
+                <tr>
+                    <td class="small"><span class="fa fa-calendar" aria-hidden="true"></span></td>
+                    <td><strong class="pull-left resume_date">-</strong></td>
+                </tr>
+                <tr>
+                    <td class="small"><span class="fa fa-clock-o" aria-hidden="true"></span></td>
+                    <td><strong class="pull-left resume_hours">{{ 'Shopping_box.opening_hours.full'|trans }}</strong></td>
+                </tr>
+                <tr>
+                    <td class="small"><span class="fa fa-ticket" aria-hidden="true"></span></td>
+                    <td><strong class="pull-left resume_ticket">X1</strong></td>
+                </tr>
+                </tbody>
+            </table>
+            <hr />
+            {% if current == 'first' %}
+                <button type="button" class="btn_full">{{ 'Shopping_box.action_one'|trans }} <span class="fa fa-angle-double-right" aria-hidden="true"></span></button>
+            {% elseif current == 'second' %}
+                <button type="button" class="btn_full">{{ 'Shopping_box.action_two'|trans }} <span class="fa fa-angle-double-right" aria-hidden="true"></span></button>
+            {% endif %}
+        </div>
+    </div>
+</div>
