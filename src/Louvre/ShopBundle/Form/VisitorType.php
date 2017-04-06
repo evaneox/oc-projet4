@@ -33,6 +33,9 @@ class VisitorType extends AbstractType
             ))
             ->add('country', CountryType::class, array(
                 'label'         => 'step_one.form.country.label',
+                'preferred_choices' => [
+                    'FR'
+                ]
             ))
             ->add('reduced', CheckboxType::class, array(
                 'label'         => 'step_one.form.reduced.label',

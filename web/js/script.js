@@ -61,6 +61,19 @@ jQuery(function($) {
     /*************************************************
      * Gestion de l'interface de la réservation des tickets
      ***********************************************************/
+    /*
+     Initialisation du bloc commande
+     */
+    var entryDateValue = $datetimepicker.find('input').val();
+    if(entryDateValue){
+        $resumeDateContainer.html(moment(entryDateValue).locale(_locale).format('Do MMMM YYYY'));
+    }
+
+    var ticketTypeValue = $("input[type='radio']:checked").val();
+    (ticketTypeValue == 1) ? $resumeHoursContainer.html(_full_hours) : $resumeHoursContainer.html(_half_hours)
+
+    $resumeTicketContainer.html('X'+$ticketControl.val());
+
 
     /*
     Gestion de la date de la visite
@@ -107,6 +120,7 @@ jQuery(function($) {
                     if(data.availability){
                         $resumeDateContainer.html(date.format('Do MMMM YYYY'));
                         $ticketControl.removeAttr('disabled');
+                        $ticketControl.html();
                         // On ajuste le nombre de billets disponibles en fonction de la capacité restante
                         for(i = 2; i <= data.remaining_purchase_item; i++){
                             $ticketControl.append('<option value="'+i+'">'+i+'</option>');
@@ -146,7 +160,9 @@ jQuery(function($) {
     $('input[type=radio]').iCheck({radioClass: 'iradio_square-grey'})
         .on('ifChecked', function(event){
             (this.value == 1) ? $resumeHoursContainer.html(_full_hours) : $resumeHoursContainer.html(_half_hours);
-    });
+        });
+
+
     $('input[type=checkbox]').iCheck({ checkboxClass: 'icheckbox_square-grey'})
         .on('ifChanged', function(event){
             //alert(event.type + ' callback');
