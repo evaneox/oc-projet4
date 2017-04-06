@@ -18,6 +18,15 @@ class BookingController extends Controller
     public function indexAction(Request $request){
         $ticketOrder = new TicketOrder();
         $form = $this->createForm(TicketOrderType::class, $ticketOrder);
+        $form->handleRequest($request);
+
+        // le visiteur a validé le formulaire
+        if ($form->isSubmitted() && $form->isValid()){
+
+        }else{
+            $this->addFlash('error', 'problème');
+            dump($form->getErrors());
+        }
         return $this->render('LouvreShopBundle:Booking:first_step.html.twig', array(
             'form' => $form->createView()
         ));

@@ -20,9 +20,9 @@
             </table>
             <hr />
             {% if current == 'first' %}
-                <button type="button" class="btn_full">{{ 'Shopping_box.action_one'|trans }} <span class="fa fa-angle-double-right" aria-hidden="true"></span></button>
+                <button type="button" class="btn_full" id="booking_action">{{ 'Shopping_box.action_one'|trans }} <span class="fa fa-angle-double-right" aria-hidden="true"></span></button>
             {% elseif current == 'second' %}
-                <button type="button" class="btn_full">{{ 'Shopping_box.action_two'|trans }} <span class="fa fa-angle-double-right" aria-hidden="true"></span></button>
+                <button type="button" class="btn_full" id="payment_action">{{ 'Shopping_box.action_two'|trans }} <span class="fa fa-angle-double-right" aria-hidden="true"></span></button>
             {% endif %}
         </div>
     </div>

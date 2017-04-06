@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Louvre\ShopBundle\Form\VisitorType;
 
 class TicketOrderType extends AbstractType
@@ -24,7 +25,8 @@ class TicketOrderType extends AbstractType
                 'html5'         => false,
                 'label'         => false,
                 'required'      => true,
-                'attr'          => ['readonly'  => 'readonly']
+                'attr'          => ['readonly'  => 'readonly'],
+                'error_bubbling'=> true
             ))
             ->add('fullDay', ChoiceType::class, array(
                 'label'         => false,
@@ -38,7 +40,7 @@ class TicketOrderType extends AbstractType
                 'entry_type'    => VisitorType::class,
                 'allow_add'     => true,
                 'allow_delete'  => true,
-                'label'         => false
+                'label'         => false,
             ));
     }
     

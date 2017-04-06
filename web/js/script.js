@@ -17,11 +17,17 @@ jQuery(function($) {
     var $resumeHoursContainer   = $('.resume_hours');
     var $container              = $('div#tickets_visitors');
     var index                   = $container.find(':input').length;
+    var $bookingAction          = $('#booking_action');
     var minDate;
+
 
     /*************************************************
      * Changement de la langue du site
      ***********************************************************/
+    if(_locale == ""){
+        _locale = "fr";
+    }
+
     $langSwitcher.on('change', function() {
         $(location).attr('href', this.value);
     });
@@ -141,6 +147,10 @@ jQuery(function($) {
         .on('ifChecked', function(event){
             (this.value == 1) ? $resumeHoursContainer.html(_full_hours) : $resumeHoursContainer.html(_half_hours);
     });
+    $('input[type=checkbox]').iCheck({ checkboxClass: 'icheckbox_square-grey'})
+        .on('ifChanged', function(event){
+            //alert(event.type + ' callback');
+        });
 
     /*************************************************
      * Forulaire selection des visiteurs
@@ -152,24 +162,14 @@ jQuery(function($) {
 
     // Creation d'un nouveau formulaire pour l'ajout d'un visiteur
     function addVisitor() {
-        var template = $container.attr('data-prototype');
-        template.replace(/__name__label__/g, 'Catégorie n°' + (index+1));
-        template.replace(/__name__/g, index);
+        var template = $container.attr('data-prototype')
+                .replace(/__name__/g,        index);
 
         var $prototype = $(template);
-        $container.append('<div class="ticket_visitor"></div>');
-        $lastContainer = $('div.ticket_visitor').last();
-        $lastContainer.append('<h4>#'+(index+1)+'</h4>');
-        $lastContainer.append($prototype);
+        $container.append($prototype);
+        $('input[type=checkbox]').iCheck({ checkboxClass: 'icheckbox_square-grey'})
         index++;
 
-        // Changement du style de la checkbox
-        $('input[type=checkbox]').iCheck({
-            checkboxClass: 'icheckbox_square-grey',
-            radioClass: 'iradio_square-grey'
-        }).on('ifChanged', function(event){
-            //alert(event.type + ' callback');
-        });
     }
 
     // Supression du dernier billet visiteurs créer.
@@ -177,4 +177,8 @@ jQuery(function($) {
         $('div.ticket_visitor').last().remove();
         index--;
     }
+
+    $bookingAction.on('click',function(e){
+        $('#order_process').find('form').submit();
+    })
 });

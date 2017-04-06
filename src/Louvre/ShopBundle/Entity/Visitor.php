@@ -3,6 +3,7 @@
 namespace Louvre\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Visitor
@@ -32,6 +33,8 @@ class Visitor
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2, max=20)
      */
     private $name;
 
@@ -39,6 +42,8 @@ class Visitor
      * @var string
      *
      * @ORM\Column(name="surname", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2, max=20)
      */
     private $surname;
 
@@ -46,6 +51,7 @@ class Visitor
      * @var \DateTime
      *
      * @ORM\Column(name="birthday", type="date")
+     * @Assert\Date()
      */
     private $birthday;
 
@@ -53,6 +59,7 @@ class Visitor
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
+     * @Assert\Country()
      */
     private $country;
 

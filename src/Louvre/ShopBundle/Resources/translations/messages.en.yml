@@ -69,6 +69,7 @@ step_one:
             label: Date of visit
             full: Full day
             half: Half day
+            error_message: Merci de choisir la date de votre visite
         ticket_counter:
             label: Number of tickets
         name:
@@ -83,11 +84,13 @@ step_one:
             label: Country
         reduced:
             label: Reduced price
+        visitor:
+            label: Visitor ticket
 
 #############################################
 #  PAGE MENTIONS LEGALES
 ##############################################################
-
+step_one.form.entry_date.error_message: Merci de choisir la date de votre visite
 legal:
     title: Legal notice
     description: Consult the legal mentions of our site.

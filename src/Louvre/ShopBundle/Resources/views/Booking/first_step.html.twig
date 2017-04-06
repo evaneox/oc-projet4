@@ -30,35 +30,63 @@
             </div>
             <div class="box_style_2" id="order_process">
                 <h2 class="inner">{{ 'step_one.title'|trans }}</h2>
-                {{ form_start(form) }}
+                {{ form_start(form, {'attr': {'id' : 'booking'} }) }}
                 {{ form_errors(form) }}
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-group">
-                                <label>{{ 'step_one.form.entry_date.label'|trans }}</label>
-                                <div class="input-group date" id="datetimepicker">
-                                    <span class="input-group-addon" id="dateTimeControl">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                    {{ form_widget(form.entryDate, {'attr': {'placeholder': "date_format" , 'class': 'form-control'} }) }}
-                                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>{{ 'step_one.form.entry_date.label'|trans }}</label>
+                            <div class="input-group date" id="datetimepicker">
+                                <span class="input-group-addon" id="dateTimeControl">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                                {{ form_widget(form.entryDate, {'attr': {'placeholder': "date_format" , 'class': 'form-control'} }) }}
                             </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-group">
-                                <label>{{ 'step_one.form.ticket_counter.label'|trans }}</label>
-                                <select id="ticketCounterControl" class="form-control" disabled="disabled">
-                                    <option value="1">1</option>
-                                </select>
-                            </div>
+
                         </div>
                     </div>
-                    <div class="form-group">
-                        {{ form_row(form.fullDay) }}
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>{{ 'step_one.form.ticket_counter.label'|trans }}</label>
+                            <select id="ticketCounterControl" class="form-control" disabled="disabled">
+                                <option value="1">1</option>
+                            </select>
+                        </div>
                     </div>
-                    <hr />
-                    <div id="tickets_visitors" data-prototype="{% filter escape %}{% include 'LouvreShopBundle:Form:visitorType.html.twig' with { 'form': form.visitors.vars.prototype } %}{% endfilter %}"></div>
-                {{ form_rest(form) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.fullDay) }}
+                </div>
+                <hr />
+                <!-- Formulaire pour les billets -->
+                {% macro prototype(visitor) %}
+                    <div class="ticket_visitor">
+                        <h4># {{ 'step_one.form.visitor.label'|trans }}</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                {{ form_row(visitor.name) }}
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                {{ form_row(visitor.surname) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                {{ form_row(visitor.birthday) }}
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                {{ form_row(visitor.country) }}
+                            </div>
+                        </div>
+                        {{ form_row(visitor.reduced) }}
+                        <hr />
+                    </div>
+                {% endmacro %}
+                <div id="tickets_visitors" data-prototype="{% filter escape %}{% include 'LouvreShopBundle:Form:visitorType.html.twig' with { 'form': form.visitors.vars.prototype } %}{% endfilter %}">
+                    {% for visitor in form.visitors %}
+                        {{ _self.prototype(visitor) }}
+                    {% endfor %}
+                </div>
                 {{ form_end(form) }}
             </div>
         </div>

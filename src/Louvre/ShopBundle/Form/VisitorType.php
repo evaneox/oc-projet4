@@ -36,7 +36,7 @@ class VisitorType extends AbstractType
             ))
             ->add('reduced', CheckboxType::class, array(
                 'label'         => 'step_one.form.reduced.label',
-                'required'      => false
+                'required'      => false,
             ));
     }
     

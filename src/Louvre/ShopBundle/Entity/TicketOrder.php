@@ -4,6 +4,7 @@ namespace Louvre\ShopBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 
@@ -35,6 +36,7 @@ class TicketOrder
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email()
      */
     private $email;
 
@@ -56,6 +58,7 @@ class TicketOrder
      * @var \DateTime
      *
      * @ORM\Column(name="entryDate", type="date")
+     * @Assert\NotBlank(message="entry_date.blank")
      */
     private $entryDate;
 
@@ -63,6 +66,7 @@ class TicketOrder
      * @var int
      *
      * @ORM\OneToMany(targetEntity="Louvre\ShopBundle\Entity\Visitor", mappedBy="ticketOrder", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $visitors;
 

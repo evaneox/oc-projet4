@@ -57,7 +57,7 @@ forgot_ticket:
         submit: Renvoyer
 
 reduce_price_info: Pour les tarifs réduits (étudiants, employé de musée, d'un service du ministère de la culture, militaire ...) , Merci de vous munir de votre justificatif le jour de la visite.
-capacity_exceed : Désolé mais le musée semble complet pour cette date, merci de choisir une autre date..
+capacity_exceed : Désolé mais le musée semble complet pour cette date, merci de choisir une autre date.
 
 step_one:
     title: Vos billets
@@ -66,6 +66,7 @@ step_one:
             label: Date de la visite
             full: Journée
             half: Demi-journée
+            error_message: Merci de choisir la date de votre visite
         ticket_counter:
             label: Nombre de billets
         name:
@@ -80,10 +81,13 @@ step_one:
             label: Pays
         reduced:
             label: Tarif réduit
+        visitor:
+            label: Billet visiteur
 
 #############################################
 #  PAGE MENTIONS LEGALES
 ##############################################################
+
 legal:
     title: Mentions légales
     description: Consultez les mentions légales de notre site.
