@@ -64,6 +64,13 @@ class TicketOrder
     private $entryDate;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="paid", type="boolean")
+     */
+    private $paid;
+
+    /**
      * @var int
      *
      * @ORM\OneToMany(targetEntity="Louvre\ShopBundle\Entity\Visitor", mappedBy="ticketOrder", cascade={"persist"})
@@ -79,6 +86,7 @@ class TicketOrder
         $this->createdDate  = new \DateTime();
         $this->code         = strtolower(uniqid('LOU'));
         $this->visitors     = new ArrayCollection();
+        $this->paid         = false;
 
     }
 
@@ -210,6 +218,30 @@ class TicketOrder
     public function getEntryDate()
     {
         return $this->entryDate;
+    }
+
+    /**
+     * Set paid
+     *
+     * @param boolean $paid
+     *
+     * @return TicketOrder
+     */
+    public function setPaid($paid)
+    {
+        $this->paid = $paid;
+
+        return $this;
+    }
+
+    /**
+     * Get paid
+     *
+     * @return boolean
+     */
+    public function getPaid()
+    {
+        return $this->paid;
     }
 
     /**

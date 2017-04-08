@@ -30,6 +30,7 @@ class VisitorType extends AbstractType
             ))
             ->add('birthday', BirthdayType::class, array(
                 'label'         => 'step_one.form.birthday.label',
+                'years'         => range(1917,2017)
             ))
             ->add('country', CountryType::class, array(
                 'label'         => 'step_one.form.country.label',

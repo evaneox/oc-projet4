@@ -23,7 +23,7 @@ class OrderCheck extends Constraint
 
     public function validatedBy()
     {
-        return 'louvre.order_check';
+        return 'louvre.order.check';
     }
 
 }

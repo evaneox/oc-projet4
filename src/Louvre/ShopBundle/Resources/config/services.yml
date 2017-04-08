@@ -3,8 +3,15 @@ services:
 #        class: Louvre\ShopBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
 
-    louvre_shop.validator.ordercheck:
+    louvre_shop.validator.order.check:
         class: Louvre\ShopBundle\Validator\OrderCheckValidator
         arguments: ["@doctrine.orm.entity_manager", "%max_capacity%", "%max_purchase_item%"]
         tags:
-            - { name: validator.constraint_validator, alias: louvre.order_check }
+            - { name: validator.constraint_validator, alias: louvre.order.check }
+
+    louvre_shop.order:
+        class: Louvre\TicketsBundle\Order
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: louvre.order}

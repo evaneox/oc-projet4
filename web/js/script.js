@@ -97,6 +97,7 @@ jQuery(function($) {
     // 3. Fermeture du musée le mardi et dimanche
     // 4. Fermeture du musée le 1er mai, 1er novembre et 25 décembre
     // 5. Réservation uniquement possible sur une année
+
     $datetimepicker.datetimepicker({
         ignoreReadonly: true,
         locale: _locale,

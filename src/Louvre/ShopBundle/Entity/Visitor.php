@@ -33,8 +33,8 @@ class Visitor
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Length(min=2, max=20)
+     * @Assert\NotBlank(message="name.blank")
+     * @Assert\Regex( pattern="#^(?!-)[\p{L}- ]{2,20}[^\-]$#u", message="name.wrong")
      */
     private $name;
 
@@ -42,8 +42,8 @@ class Visitor
      * @var string
      *
      * @ORM\Column(name="surname", type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Length(min=2, max=20)
+     * @Assert\NotBlank(message="surname.blank")
+     * @Assert\Regex( pattern="#^(?!-)[\p{L}- ]{2,20}[^\-]$#u", message="surname.wrong")
      */
     private $surname;
 

@@ -6,3 +6,11 @@ entry_date:
   is_close: Le musée sera fermé à cette date
   is_full: Le musée est complet pour cette date
   too_much_ticket: Vous ne pouvez pas réserver autant de billets
+
+name:
+  blank: le prénom ne doit pas être vide
+  wrong: le prénom n'est pas correct
+
+surname:
+  blank: le nom ne doit pas être vide
+  wrong: le nom n'est pas correct
