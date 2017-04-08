@@ -16,6 +16,7 @@ jQuery(function($) {
     var $ticketControl          = $('#ticketCounterControl');
     var $resumeHoursContainer   = $('.resume_hours');
     var $container              = $('div#tickets_visitors');
+    var $ticketZone             = $('div.ticket_visitor');
     var index                   = $container.find(':input').length;
     var $bookingAction          = $('#booking_action');
     var minDate;
@@ -28,6 +29,7 @@ jQuery(function($) {
         _locale = "fr";
     }
 
+    // Redirection vers la même page avec une autre langue
     $langSwitcher.on('change', function() {
         $(location).attr('href', this.value);
     });
@@ -49,7 +51,7 @@ jQuery(function($) {
         return false;
     });
 
-    // On cache le bouton scroll si l'utilisateur est en haut de la page
+    // Le bouton scroll n'est pas affiché si le visiteur et en haut de la page
     $(window).scroll(function(){
         if ($(this).scrollTop() > 100) {
             $('#gotoTop').fadeIn();
@@ -59,32 +61,34 @@ jQuery(function($) {
     });
 
     /*************************************************
-     * Gestion de l'interface de la réservation des tickets
+     * Gestion de l'interface de la réservation
      ***********************************************************/
-    /*
-     Initialisation du bloc commande
-     */
+
+    /*==================
+     Initialisation de la page
+     ==================================*/
     var entryDateValue = $datetimepicker.find('input').val();
-    if(entryDateValue){
-        $resumeDateContainer.html(moment(entryDateValue).locale(_locale).format('Do MMMM YYYY'));
-    }
-
     var ticketTypeValue = $("input[type='radio']:checked").val();
-    (ticketTypeValue == 1) ? $resumeHoursContainer.html(_full_hours) : $resumeHoursContainer.html(_half_hours)
 
-    $resumeTicketContainer.html('X'+$ticketControl.val());
+    (ticketTypeValue == 1) ? $resumeHoursContainer.html(_full_hours) : $resumeHoursContainer.html(_half_hours);
 
-
-    /*
-    Gestion de la date de la visite
-     */
-
-    // On vérifie si on peut encore réserver des billets pour aujourd'hui
-    if(DateOfToday.get('hours') >= maxHoursToOrder) {
-        minDate = DateOfToday.add(1,'days');
-    }else{
-        minDate = DateOfToday;
+    // Lors de la soumission du formulaire et en cas d'erreur on met quand même à jours les informations
+    // pour avoir une cohérence avec la page précédente.
+    if(entryDateValue){
+        var date = moment(entryDateValue).locale(_locale);
+        var ticketNumber = $ticketZone.length;
+        preCheckDate(date, ticketNumber);
     }
+
+    // On change le théme pour le champs checkbox
+    $('input[type=checkbox]').iCheck({ checkboxClass: 'icheckbox_square-grey'});
+
+
+    /*==================
+     Gestion de l'interface pour la date de réservation
+     ==================================*/
+    // On ne peut pas réserver apres 14h00
+    minDate = (DateOfToday.get('hours') >= maxHoursToOrder) ? minDate = DateOfToday.add(1,'days') : DateOfToday;
 
     // On peut maintenant créer le calendrier pour la selection de la date de la visite
     // avec les critéres suivants :
@@ -112,35 +116,17 @@ jQuery(function($) {
     }).on('dp.change', function(e){
         var date            = e.date;
 
-        // Dans le cas ou l'utilisateur a choisi une date,
-        // on vérifie que le musée n'est pas complet
-        $.post( _path_web_quota, { date: date.format('YYYY-MM-DD') })
-            .done(function( data ) {
-                if(!data.errorCode)
-                    if(data.availability){
-                        $resumeDateContainer.html(date.format('Do MMMM YYYY'));
-                        $ticketControl.removeAttr('disabled');
-                        $ticketControl.html();
-                        // On ajuste le nombre de billets disponibles en fonction de la capacité restante
-                        for(i = 2; i <= data.remaining_purchase_item; i++){
-                            $ticketControl.append('<option value="'+i+'">'+i+'</option>');
-                        }
-                    }else{
-                        $datetimepicker.find('input').val('');
-                        $ticketControl.attr('disabled', 'disabled');
-                        swal({ title: '', html : _over_quota, type :'error' });
-                    }
-            });
+        // On peut maintenant effectuer une requete ajax pour vérifier si la date est valide
+        preCheckDate(date, 1);
     });
 
-    /*
-    Gestion du champs du nombre de billets
-     */
+    /*==================
+     Gestion de la sélection du nombre de billets
+     ==================================*/
     $ticketControl.on('change', function(e){
         $resumeTicketContainer.html('X'+this.value);
 
-        // On génére aussi le formulaire pour l'ajout des billets
-        // en évitant d'écraser tous les billets
+        // On génére aussi le formulaire pour l'ajout des billets en évitant d'écraser tous les billets
         var n = $('div.ticket_visitor').length;
 
         if(this.value > n){
@@ -154,29 +140,58 @@ jQuery(function($) {
         }
     });
 
-    /*
-     Gestion du type de billets
-     */
+    /*==================
+     Gestion de la sélection du type de billets
+     ==================================*/
     $('input[type=radio]').iCheck({radioClass: 'iradio_square-grey'})
         .on('ifChecked', function(event){
             (this.value == 1) ? $resumeHoursContainer.html(_full_hours) : $resumeHoursContainer.html(_half_hours);
         });
 
+    /**
+     * Vérification dynamique de la date de réservation
+     * @param date
+     * @param defautNumberTicket
+     */
+    function preCheckDate(date, defautNumberTicket){
+        // Dans le cas ou l'utilisateur a choisi une date, on vérifie que le musée n'est pas complet
+        $.post( _path_web_quota, { date: date.format('YYYY-MM-DD') })
+            .done(function( data ) {
+                if(!data.errorCode)
+                // la réservation n'est pas complète
+                    if(data.availability){
+                        $ticketControl.html();
+                        // On ajuste le nombre de billets disponibles en fonction de la capacité restante
+                        for(i = 2; i <= data.remaining_purchase_item; i++){
+                            var selected = (i === defautNumberTicket) ? 'selected="selected"' : '';
+                            $ticketControl.append('<option value="'+i+'" '+selected+'>'+i+'</option>');
+                        }
+                        $ticketControl.removeAttr('disabled');
+                        $resumeDateContainer.html(date.format('Do MMMM YYYY'));
+                        $resumeTicketContainer.html('X'+defautNumberTicket);
+                    }
+                    // Dans le cas contraire
+                    else{
+                        $datetimepicker.find('input').val('');
+                        $ticketControl.attr('disabled', 'disabled');
+                        swal({ title: '', html : _over_quota, type :'error' });
+                    }
+            });
+    }
 
-    $('input[type=checkbox]').iCheck({ checkboxClass: 'icheckbox_square-grey'})
-        .on('ifChanged', function(event){
-            //alert(event.type + ' callback');
-        });
-
-    /*************************************************
-     * Forulaire selection des visiteurs
-     ***********************************************************/
+    /*==================
+     Gestion de l'interface des visiteurs
+     ==================================*/
     // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un.
     if (index == 0) {
         addVisitor();
     }
 
-    // Creation d'un nouveau formulaire pour l'ajout d'un visiteur
+    /**
+     * Génére un formulaire pour l'ajout d'un nouveau visiteurs
+     *
+     * @return void
+     */
     function addVisitor() {
         var template = $container.attr('data-prototype')
                 .replace(/__name__/g,        index);
@@ -188,12 +203,19 @@ jQuery(function($) {
 
     }
 
-    // Supression du dernier billet visiteurs créer.
+    /**
+     * Supression du dernier formulaire créer pour un visiteur
+     *
+     * @return void
+     */
     function deleteVisitor(){
         $('div.ticket_visitor').last().remove();
         index--;
     }
 
+    /*==================
+     Gestion de la soumission du formulaire
+     ==================================*/
     $bookingAction.on('click',function(e){
         $('#order_process').find('form').submit();
     })
