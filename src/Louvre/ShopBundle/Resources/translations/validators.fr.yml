@@ -1,2 +1,8 @@
 entry_date:
   blank: Merci de choisir la date de votre visite
+  is_too_old: Vous ne pouvez pas réserver pour un jour passé
+  is_too_far: Vous ne pouvez pas réserver pour une date aussi éloignée
+  is_too_late: Vous ne pouvez pas réserver de billets "Journée" après 14:00
+  is_close: Le musée sera fermé à cette date
+  is_full: Le musée est complet pour cette date
+  too_much_ticket: Vous ne pouvez pas réserver autant de billets

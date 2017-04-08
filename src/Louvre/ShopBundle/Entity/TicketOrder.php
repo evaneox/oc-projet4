@@ -5,7 +5,7 @@ namespace Louvre\ShopBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Louvre\ShopBundle\Validator\OrderCheck;
 
 
 /**
@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="ticket_order")
  * @ORM\Entity(repositoryClass="Louvre\ShopBundle\Repository\TicketOrderRepository")
+ * @OrderCheck()
  */
 class TicketOrder
 {
@@ -160,7 +161,7 @@ class TicketOrder
      */
     public function getFullDay()
     {
-        return $this->fullDay;
+        return (bool) $this->fullDay;
     }
 
     /**
@@ -244,4 +245,15 @@ class TicketOrder
     {
         return $this->visitors;
     }
+
+    /**
+     * Récupération du nombre de tickets
+     *
+     * @return int
+     */
+    public function getCountVisitors()
+    {
+        return count($this->visitors);
+    }
+
 }

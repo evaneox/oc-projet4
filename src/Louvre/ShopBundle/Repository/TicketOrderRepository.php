@@ -10,4 +10,14 @@ namespace Louvre\ShopBundle\Repository;
  */
 class TicketOrderRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getTicketsFor(\DateTime $date)
+    {
+        return $this->createQueryBuilder('d')
+            ->select('COUNT(d)')
+            ->where('d.entryDate = :date')
+            ->setParameter('date', $date)
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
 }
