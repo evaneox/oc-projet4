@@ -3,6 +3,11 @@ louvre_order :
     path:    /
     defaults:    {_controller: LouvreShopBundle:Booking:index}
 
+## Page de paiement
+louvre_payment :
+    path:    /order/payment
+    defaults:    {_controller: LouvreShopBundle:Booking:orderPayment}
+
 ## Mentions légales
 louvre_ticket_mentions:
     path:     /legal
