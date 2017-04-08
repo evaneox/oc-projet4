@@ -2,7 +2,7 @@
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
-    database_host: localhost
+    database_host: 127.0.0.1
     database_port: 3306
     database_name: oc_projet_4
     database_user: root
@@ -16,4 +16,9 @@ parameters:
     mailer_password: ~
 
     # A secret key that's used to generate certain security-related tokens
-    secret: ThisTokenIsNotSoSecretChangeIt
+    secret: e08550f9ebb3586ef600df8a0eb666f1cab33a41
+
+    # Custom Louvre parameter
+    locale: fr
+    max_capacity: 1000
+    max_purchase_item: 10
