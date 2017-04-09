@@ -20,7 +20,8 @@ jQuery(function($) {
     var index                   = $container.find(':input').length;
     var $bookingAction          = $('#booking_action');
     var minDate;
-
+    var oldDate;
+    var lastAvailableDate;
 
     /*************************************************
      * Changement de la langue du site
@@ -67,6 +68,9 @@ jQuery(function($) {
     /*==================
      Initialisation de la page
      ==================================*/
+    // On change le théme pour le champs checkbox
+    $('input[type=checkbox]').iCheck({ checkboxClass: 'icheckbox_square-grey'});
+
     var entryDateValue = $datetimepicker.find('input').val();
     var ticketTypeValue = $("input[type='radio']:checked").val();
 
@@ -76,13 +80,9 @@ jQuery(function($) {
     // pour avoir une cohérence avec la page précédente.
     if(entryDateValue){
         var date = moment(entryDateValue).locale(_locale);
-        var ticketNumber = $ticketZone.length;
-        preCheckDate(date, ticketNumber);
+        var ticketNumber            = $ticketZone.length;
+        preCheckDate(date,ticketNumber);
     }
-
-    // On change le théme pour le champs checkbox
-    $('input[type=checkbox]').iCheck({ checkboxClass: 'icheckbox_square-grey'});
-
 
     /*==================
      Gestion de l'interface pour la date de réservation
@@ -118,7 +118,11 @@ jQuery(function($) {
         var date            = e.date;
 
         // On peut maintenant effectuer une requete ajax pour vérifier si la date est valide
-        preCheckDate(date, 1);
+        if(oldDate !== $datetimepicker.find('input').val()){
+            oldDate         = $datetimepicker.find('input').val();
+            console.log(oldDate);
+            preCheckDate(date, $ticketControl.val());
+        }
     });
 
     /*==================
@@ -145,8 +149,14 @@ jQuery(function($) {
      Gestion de la sélection du type de billets
      ==================================*/
     $('input[type=radio]').iCheck({radioClass: 'iradio_square-grey'})
-        .on('ifChecked', function(event){
-            (this.value == 1) ? $resumeHoursContainer.html(_full_hours) : $resumeHoursContainer.html(_half_hours);
+        .on('ifChecked', function(event) {
+            if(this.value == 1) {
+                $resumeHoursContainer.html(_full_hours);
+                $('input[type=checkbox]').iCheck('enable');
+            } else{
+                $resumeHoursContainer.html(_half_hours);
+                $('input[type=checkbox]').iCheck('disable');
+            }
         });
 
     /**
@@ -155,18 +165,22 @@ jQuery(function($) {
      * @param defautNumberTicket
      */
     function preCheckDate(date, defautNumberTicket){
+
         // Dans le cas ou l'utilisateur a choisi une date, on vérifie que le musée n'est pas complet
-        $.post( _path_web_quota, { date: date.format('YYYY-MM-DD') })
+        $.post( _path_web_quota, { date: date.format('YYYY-MM-DD'), tickets: defautNumberTicket})
             .done(function( data ) {
                 if(!data.errorCode)
                 // la réservation n'est pas complète
                     if(data.availability){
-                        $ticketControl.html();
+                        var selected = (defautNumberTicket === 1) ? 'selected="selected"' : '';
+                        $ticketControl.html('<option value="1" '+selected+'>1</option>');
                         // On ajuste le nombre de billets disponibles en fonction de la capacité restante
                         for(i = 2; i <= data.remaining_purchase_item; i++){
                             var selected = (i === defautNumberTicket) ? 'selected="selected"' : '';
                             $ticketControl.append('<option value="'+i+'" '+selected+'>'+i+'</option>');
                         }
+                        lastAvailableDate = date.format('YYYY-MM-DD');
+                        $ticketControl.val(defautNumberTicket);
                         $ticketControl.removeAttr('disabled');
                         $resumeDateContainer.html(date.format('Do MMMM YYYY'));
                         $resumeTicketContainer.html('X'+defautNumberTicket);
