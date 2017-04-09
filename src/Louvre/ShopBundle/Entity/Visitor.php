@@ -4,6 +4,7 @@ namespace Louvre\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Louvre\ShopBundle\Validator\BirthdayCheck;
 
 /**
  * Visitor
@@ -52,6 +53,7 @@ class Visitor
      *
      * @ORM\Column(name="birthday", type="date")
      * @Assert\Date()
+     * @BirthdayCheck()
      */
     private $birthday;
 

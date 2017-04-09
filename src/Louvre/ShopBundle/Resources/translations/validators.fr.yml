@@ -14,3 +14,6 @@ name:
 surname:
   blank: le nom ne doit pas être vide
   wrong: le nom n'est pas correct
+
+birthday:
+  wrong: la date de naissance n'est pas correct

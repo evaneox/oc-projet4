@@ -9,6 +9,12 @@ services:
         tags:
             - { name: validator.constraint_validator, alias: louvre.order.check }
 
+    louvre_shop.validator.birthday.check:
+        class: Louvre\ShopBundle\Validator\BirthdayCheckValidator
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: validator.constraint_validator, alias: louvre.birthday.check }
+
     louvre_shop.webservice:
         class: Louvre\ShopBundle\Webservice\Webservice
         arguments: ["@doctrine.orm.entity_manager", "%max_capacity%", "%max_purchase_item%"]
