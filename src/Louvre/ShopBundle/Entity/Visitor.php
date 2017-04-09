@@ -255,4 +255,14 @@ class Visitor
     {
         return $this->ticketOrder;
     }
+
+    /**
+     * Récupére l'age du visiteur
+     *
+     * @return int
+     */
+    public function getAge()
+    {
+        return $this->getBirthday()->diff(new \DateTime())->y;
+    }
 }
