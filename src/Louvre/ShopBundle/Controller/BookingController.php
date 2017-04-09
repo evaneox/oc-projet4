@@ -22,7 +22,7 @@ class BookingController extends Controller
 
         // Lorsque le visiteur à validé sa commande, on vérifie les éléments du formulaire
         if ($form->isSubmitted() && $form->isValid()){
-
+            $this->get('louvre_shop.order')->create($ticketOrder);
         }
 
         return $this->render('LouvreShopBundle:Booking:first_step.html.twig', array(

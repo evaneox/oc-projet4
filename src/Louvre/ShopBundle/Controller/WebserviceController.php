@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 class WebserviceController extends Controller
 {
     /**
-     * Vérification de la capacité du musée en fonction de la date de la visite
+     * Vérification de la capacité du musée en fonction de la date de la visite et du nombre de tickets désiré
      *
      * @param Request $request
      * @return mixed
@@ -19,17 +19,15 @@ class WebserviceController extends Controller
 
         if ($request->isXmlHttpRequest()) {
             $date                   = new \DateTime($request->get('date'));
-            $maxCapacity            = (int) $this->getParameter('max_capacity');
-            $maxPurchaseItem        = (int) $this->getParameter('max_purchase_item');
+            $tickets                = (int) $request->get('tickets');
 
-            // Récupération du nombre de billets pour cette date
-            $totalTicketForThisDate = $this->getDoctrine()->getRepository('LouvreShopBundle:TicketOrder')->getTicketsFor($date);
+            if($this->get('louvre_shop.webservice')->checkCapacity($date, $tickets)){
+                $remainingPurchaseItemOnDate = $this->get('louvre_shop.webservice')->getRemainingTickets($date, $tickets);
+                $response = ['availability' => true, 'remaining_purchase_item' => $remainingPurchaseItemOnDate ];
+            }else{
+                $response =  ['availability' => false];
+            }
 
-            // Si on ne peut vendre au moins 1 billets, on considére que le musée est complet
-            // dans le cas contraire on retourne le nombre de billet de vente maximum à hauteur des billets restants
-            $remainingPurchaseItemOnDate = ( ($maxCapacity - $totalTicketForThisDate) < $maxPurchaseItem ) ? ($maxCapacity - $totalTicketForThisDate) : $maxPurchaseItem;
-            //$response = (($totalTicketForThisDate + 1) > $maxCapacity) ? ['availability' => false] : ['availability' => true, 'remaining_purchase_item' => $remainingPurchaseItemOnDate ];
-            $response = ['availability' => true, 'remaining_purchase_item' => 15 ];
         }else{
             $response = array(
                 'errorCode' => 400,

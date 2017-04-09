@@ -12,13 +12,14 @@ use Symfony\Component\Validator\ConstraintValidator;
 class OrderCheckValidator extends ConstraintValidator
 {
     protected $em;
-    private $maxCapacity;
+    private $maxPurchaseItem;
+    private $container;
 
-    public function __construct(EntityManagerInterface $em, $maxCapacity, $maxPurchaseItem)
+    public function __construct(EntityManagerInterface $em, $container, $maxPurchaseItem)
     {
         $this->em               = $em;
-        $this->maxCapacity      = (int) $maxCapacity;
-        $this->maxPurchaseItem  = (int) $maxPurchaseItem;
+        $this->container        = $container;
+        $this->maxPurchaseItem  = $maxPurchaseItem;
     }
 
     public function validate($order, Constraint $constraint)
@@ -55,9 +56,7 @@ class OrderCheckValidator extends ConstraintValidator
             $numberOfTickets = $order->getCountVisitors();
             if($numberOfTickets <= $this->maxPurchaseItem){
 
-                $totalTicketForThisDate = $this->em->getRepository('LouvreShopBundle:TicketOrder')->getTicketsFor($date);
-
-                if( ($totalTicketForThisDate + $numberOfTickets) > $this->maxCapacity){
+                if(!$this->container->get('louvre_shop.webservice')->checkCapacity($date, $numberOfTickets)){
                     $this->context->buildViolation($constraint->messageIsFull)->addViolation();
                 }
 
