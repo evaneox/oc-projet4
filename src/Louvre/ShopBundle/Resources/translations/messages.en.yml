@@ -61,6 +61,7 @@ forgot_ticket:
 
 reduce_price_info: For reduced rates (students, museum staff, a department of the Ministry of Culture, ...), Please bring your proof of identity on the day of the visit.
 capacity_exceed : Sorry but the museum seems complete for this date, please choose another date.
+reduce_price_more : Discount applied only for day tickets
 
 step_one:
     title: Your tickets

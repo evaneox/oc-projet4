@@ -58,6 +58,7 @@ forgot_ticket:
 
 reduce_price_info: Pour les tarifs réduits (étudiants, employé de musée, d'un service du ministère de la culture, militaire ...) , Merci de vous munir de votre justificatif le jour de la visite.
 capacity_exceed : Désolé mais le musée semble complet pour cette date, merci de choisir une autre date.
+reduce_price_more :  Réduction appliqué uniquement pour les billets journée
 
 step_one:
     title: Vos billets
