@@ -108,18 +108,7 @@ class Order
             // 4. On envoie contenant les billets
             $this->mailer->sendTicket($order);
 
-            // 5. On efface la commande de la session
-            $this->delete($order);
         }
     }
 
-    /**
-     * Supression/annulation d'une commande
-     *
-     * @param TicketOrder $order
-     */
-    public function delete(TicketOrder $order)
-    {
-        $this->request->getSession()->remove('order');
-    }
 }

@@ -113,6 +113,19 @@ step_two:
 payment_fail : An error occurred during the transaction, please check your informations and retry the operation.
 
 #############################################
+#  PAGE DE CONFIRMATION ETAPE 3
+##############################################################
+step_tree:
+    title: Booking confirmed!
+    subtitle: Thank you !
+    code: Booking Code
+    explain: >
+        Your reservation has been validated, you will receive in a few moments a confirmation email.<br /><br />
+        We recommend that you keep the above validation code, which will allow you to collect your tickets in case of losses.
+    backtohome: Back to homepage
+
+
+#############################################
 #  EMAIL
 ##############################################################
 email:

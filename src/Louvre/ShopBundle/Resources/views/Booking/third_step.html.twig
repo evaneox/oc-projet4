@@ -12,9 +12,18 @@
     <div class="row">
         <div class="col-md-9">
             <div class="box_style_2" id="order_process">
-                félicitation !
+                <h2 class="inner">{{ 'step_tree.title'|trans }}</h2>
+                <div id="confirm">
+                    <i class="icon_check_alt2"></i>
+                    <h1>{{ 'step_tree.subtitle'|trans }}</h1>
+                    <h3>{{ 'step_tree.code'|trans }} : {{ order.getCode }}</h3>
+                    <br />
+                    <p>{{ 'step_tree.explain'|trans|raw }}</p>
+                    <br />
+                    <a href="{{ path('louvre_order')}}" class="btn btn-default">{{ 'step_tree.backtohome'|trans }}</a>
+                </div>
             </div>
         </div>
-        {% include "LouvreShopBundle:Default:shopping_box.html.twig" with {'current': 'second'} %}
+        {% include "LouvreShopBundle:Default:shopping_box.html.twig" with {'current': 'third'} %}
     </div>
 {% endblock %}

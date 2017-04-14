@@ -19,7 +19,7 @@ class BookingController extends Controller
 
         // On annule la commande précédente si l'utilisateur revient sur la page de réservation
         if($request->getSession()->has('order')){
-            $this->get('louvre_shop.order')->delete($request->getSession()->get('order'));
+            $request->getSession()->remove('order');
         }
 
         $ticketOrder = new TicketOrder();
@@ -60,7 +60,7 @@ class BookingController extends Controller
 
                 // On peut finaliser la commande et rediriger vers la page de confirmation
                 $this->get('louvre_shop.order')->save($order);
-                //return $this->redirectToRoute('louvre_confirmation');
+                return $this->redirectToRoute('louvre_confirmation');
             }else{
                 $request->getSession()->getFlashBag()->add('error', $this->get('translator')->trans('payment_fail'));
                 return $this->redirectToRoute('louvre_payment');
@@ -68,6 +68,28 @@ class BookingController extends Controller
         }
 
         return $this->render('LouvreShopBundle:Booking:second_step.html.twig', array(
+            'order'     => $order,
+        ));
+    }
+
+    /**
+     * Affichage de la page de confirmation [Commande - step3]
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function orderConfirmationAction(Request $request){
+        // Seul les utilisateur ayant une commande en cours sont autorisés à continuer
+        if(!$request->getSession()->has('order') OR is_null($request->getSession()->get('order'))){
+            return $this->redirectToRoute('louvre_order');
+        }
+
+        // On récupére la commande en cours et on supprime la commande en session
+        // car le processus de commande est terminé
+        $order = $request->getSession()->get('order');
+        $request->getSession()->remove('order');
+
+        return $this->render('LouvreShopBundle:Booking:third_step.html.twig', array(
             'order'     => $order,
         ));
     }

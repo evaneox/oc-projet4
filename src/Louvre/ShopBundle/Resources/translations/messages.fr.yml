@@ -113,6 +113,18 @@ step_two:
 payment_fail : Une erreur s'est produite lors de la transaction, merci de vérifier vos informations et de recommencer l'opération.
 
 #############################################
+#  PAGE DE CONFIRMATION ETAPE 3
+##############################################################
+step_tree:
+    title: Réservation confirmé!
+    subtitle: Merci !
+    code: Code de réservation
+    explain: >
+        Votre réservation à été prise en compte, vous allez recevoir d'ici quelques instants un email de confirmation.<br /><br />
+        Nous nous conseillons de conserver le code de validation ci-dessus qui vous permettra de récupérer vos billets en cas de pertes.
+    backtohome: Retourner à l'accueil
+
+#############################################
 #  EMAIL
 ##############################################################
 email:

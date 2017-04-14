@@ -479,6 +479,15 @@ a.btn_full_outline:hover {
     background: #eee !important;
 }
 
+#confirm{
+    text-align: center;
+}
+#confirm i {
+    font-size: 140px;
+    color: #009393;
+    display: inline-block;
+}
+
 /*----------------------------------
    FORM
    ------------------------------------*/
