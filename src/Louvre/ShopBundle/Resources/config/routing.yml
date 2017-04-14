@@ -8,6 +8,11 @@ louvre_payment :
     path:    /order/payment
     defaults:    {_controller: LouvreShopBundle:Booking:orderPayment}
 
+## Page de confirmation
+louvre_confirmation :
+    path:    /order/confirmation
+    defaults:    {_controller: LouvreShopBundle:Booking:orderConfirmation}
+
 ## Mentions légales
 louvre_ticket_mentions:
     path:     /legal
