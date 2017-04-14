@@ -36,7 +36,7 @@ class TicketOrder
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      * @Assert\Email()
      */
     private $email;
@@ -63,12 +63,6 @@ class TicketOrder
      */
     private $entryDate;
 
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="paid", type="boolean")
-     */
-    private $paid;
 
     /**
      * @var int
@@ -84,10 +78,8 @@ class TicketOrder
     public function __construct()
     {
         $this->createdDate  = new \DateTime();
-        $this->code         = strtolower(uniqid('LOU'));
+        $this->code         = strtoupper(uniqid('LOU'));
         $this->visitors     = new ArrayCollection();
-        $this->paid         = false;
-
     }
 
     /**
@@ -221,30 +213,6 @@ class TicketOrder
     }
 
     /**
-     * Set paid
-     *
-     * @param boolean $paid
-     *
-     * @return TicketOrder
-     */
-    public function setPaid($paid)
-    {
-        $this->paid = $paid;
-
-        return $this;
-    }
-
-    /**
-     * Get paid
-     *
-     * @return boolean
-     */
-    public function getPaid()
-    {
-        return $this->paid;
-    }
-
-    /**
      * Add visitor
      *
      * @param \Louvre\ShopBundle\Entity\Visitor $visitor
@@ -286,6 +254,23 @@ class TicketOrder
     public function getCountVisitors()
     {
         return count($this->visitors);
+    }
+
+    /**
+     * Calcule le montant total de la commande
+     *
+     * @return int
+     */
+    public function getTotalPrice()
+    {
+        $visitors = $this->getVisitors();
+        $total = 0;
+
+        foreach($visitors as $visitor){
+            $total = $total + $visitor->getPrice();
+        }
+
+        return $total;
     }
 
 }
