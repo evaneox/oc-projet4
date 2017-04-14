@@ -19,6 +19,8 @@ jQuery(function($) {
     var $ticketZone             = $('div.ticket_visitor');
     var index                   = $container.find(':input').length;
     var $bookingAction          = $('#booking_action');
+    var $payment_action         = $('#payment_action');
+    var $payment_form           = $('#payment_form');
     var minDate;
     var oldDate;
     var lastAvailableDate;
@@ -62,26 +64,41 @@ jQuery(function($) {
     });
 
     /*************************************************
-     * Gestion de l'interface de la réservation
+     * Initialisation de la page
      ***********************************************************/
-
-    /*==================
-     Initialisation de la page
-     ==================================*/
-    // On change le théme pour le champs checkbox
+    // Chargement des styles dynamique
     $('input[type=checkbox]').iCheck({ checkboxClass: 'icheckbox_square-grey'});
 
-    var entryDateValue = $datetimepicker.find('input').val();
-    var ticketTypeValue = $("input[type='radio']:checked").val();
+    /*************************************************
+     * Gestion de l'interface de la réservation
+     ***********************************************************/
+    if(_initLoader)
+        _init_booking();
 
-    (ticketTypeValue == 1) ? $resumeHoursContainer.html(_full_hours) : $resumeHoursContainer.html(_half_hours);
+    /**
+     * Chargement des éléments necessaire à la commande de billets
+     *
+     * @private
+     */
+    function _init_booking(){
 
-    // Lors de la soumission du formulaire et en cas d'erreur on met quand même à jours les informations
-    // pour avoir une cohérence avec la page précédente.
-    if(entryDateValue){
-        var date = moment(entryDateValue).locale(_locale);
-        var ticketNumber            = $ticketZone.length;
-        preCheckDate(date,ticketNumber);
+        var entryDateValue = $datetimepicker.find('input').val();
+        var ticketTypeValue = $("input[type='radio']:checked").val();
+
+        (ticketTypeValue == 1) ? $resumeHoursContainer.html(_full_hours) : $resumeHoursContainer.html(_half_hours);
+
+        // Lors de la soumission du formulaire et en cas d'erreur on met quand même à jours les informations
+        // pour avoir une cohérence avec la page précédente.
+        if(entryDateValue){
+            var date = moment(entryDateValue).locale(_locale);
+            var ticketNumber            = $ticketZone.length;
+            preCheckDate(date,ticketNumber);
+        }
+
+        // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un.
+        if (index == 0) {
+            addVisitor();
+        }
     }
 
     /*==================
@@ -197,11 +214,6 @@ jQuery(function($) {
     /*==================
      Gestion de l'interface des visiteurs
      ==================================*/
-    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un.
-    if (index == 0) {
-        addVisitor();
-    }
-
     /**
      * Génére un formulaire pour l'ajout d'un nouveau visiteurs
      *
@@ -233,5 +245,117 @@ jQuery(function($) {
      ==================================*/
     $bookingAction.on('click',function(e){
         $('#order_process').find('form').submit();
-    })
+    });
+
+
+    /*************************************************
+     * Gestion de l'interface du paiement
+     ***********************************************************/
+
+    /*==================
+     Initialisation du formulaire
+     ==================================*/
+    Stripe.setPublishableKey('pk_test_AeQt3sCiUWeWsBr0BdQKDfZ5');
+
+    $('input[name=card_number]').formatter({ 'pattern': '{{9999}} {{9999}} {{9999}} {{9999}}'});
+    $('input[name=ccv]').formatter({ 'pattern': '{{999}}' });
+
+    /*==================
+     Traduction du message de retour de stripe qui ne fournit pas de changement de langue
+     ==================================*/
+    if(_locale == 'fr'){
+        var errorMessages = {
+            incorrect_number: "Le numéro de carte est incorrect.",
+            invalid_number: "Le numéro de carte n'est pas un numéro de carte de crédit valide.",
+            invalid_expiry_month: "Le mois d'expiration de la carte est invalide.",
+            invalid_expiry_year: "L'année d'expiration de la carte est invalide.",
+            invalid_cvc: "Le code de sécurité de la carte n'est pas valide.",
+            expired_card: "La carte a expiré.",
+            incorrect_cvc: "Le code de sécurité de la carte est incorrect.",
+            incorrect_zip: "Le code postal de la carte a échoué à la validation.",
+            card_declined: "La carte a été refusée.",
+            missing: "Il n'y a pas de carte sur un client qui est chargé",
+            processing_error: "Une erreur s'est produite lors du traitement de la carte.",
+            rate_limit:  "Une erreur s'est produite en raison des requêtes qui ont frappé l'API trop rapidement. Veuillez nous informer si vous rencontrez systématiquement cette erreur.",
+            invalid_email: "L'adresse email est invalide"
+        };
+    }else{
+        var errorMessages = {
+            incorrect_number: "The card number is incorrect.",
+            invalid_number: "The card number is not a valid credit card number.",
+            invalid_expiry_month: "The card's expiration month is invalid.",
+            invalid_expiry_year: "The card's expiration year is invalid.",
+            invalid_cvc: "The card's security code is invalid.",
+            expired_card: "The card has expired.",
+            incorrect_cvc: "The card's security code is incorrect.",
+            incorrect_zip: "The card's zip code failed validation.",
+            card_declined: "The card was declined.",
+            missing: "There is no card on a customer that is being charged.",
+            processing_error: "An error occurred while processing the card.",
+            rate_limit:  "An error occurred due to requests hitting the API too quickly. Please let us know if you're consistently running into this error.",
+            invalid_email: "Email address is invalid"
+        };
+    }
+
+    /*==================
+     On va déclencher la validation du formulaire de payment
+     ==================================*/
+    $payment_action.on('click',function(e){
+        $payment_form.submit();
+    });
+
+    /*==================
+     Gestion de la soumission du formulaire
+     ==================================*/
+    $payment_form.on('submit', function(e){
+        e.preventDefault();
+        var message;
+
+        $payment_action.attr('disabled', true);
+
+        if(validateEmail($payment_form.find('input[name=email]').val())){
+            Stripe.card.createToken($payment_form , function(status, response){
+                if(response.error){
+                    message = (response.error.type == 'card_error') ? errorMessages[ response.error.code ] : response.error.message;
+                    displayErrorMessage(message);
+                }else{
+                    var token = response.id;
+                    $payment_form.append('<input type="hidden" name="stripeToken" value="'+token+'">');
+                    $payment_form.get(0).submit();
+                }
+            });
+        }else{
+            displayErrorMessage(errorMessages['invalid_email']);
+        }
+
+
+    });
+
+    /**
+     *  Vérifie si une adrese email est valide
+     *
+     * @param email
+     * @returns {boolean}
+     */
+    function validateEmail($email) {
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        return emailReg.test( $email );
+    }
+
+    /**
+     * Affiche un message d'erreur pour la page
+     *
+     * @param $message
+     */
+    function displayErrorMessage(message){
+        $payment_form.find('.alert').remove();
+        $payment_form.prepend('<div class="alert alert-danger"><ul class="list-unstyled"><li><span class="glyphicon glyphicon-exclamation-sign"></span>'+ message +'</li></ul>');
+        $payment_action.attr('disabled', false);
+    }
+
+
+
+
+
+
 });

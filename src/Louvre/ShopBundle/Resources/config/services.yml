@@ -21,4 +21,13 @@ services:
 
     louvre_shop.order:
         class: Louvre\ShopBundle\Order\Order
-        arguments: ["@doctrine.orm.entity_manager"]
+        arguments: ["@doctrine.orm.entity_manager", "@request_stack", "@louvre_shop.email"]
+
+    louvre_shop.payment:
+        class: Louvre\ShopBundle\Payment\Payment
+        arguments: ["@doctrine.orm.entity_manager", "%stripe_key%"]
+
+
+    louvre_shop.email:
+        class: Louvre\ShopBundle\Mailer\Mailer
+        arguments: ["@service_container", "%mailer_from%", "%mailer_reply%", "%mailer_name%"]

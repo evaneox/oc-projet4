@@ -227,6 +227,10 @@ header select{
     width: 50%
 }
 
+.bs-wizard>.bs-wizard-step.complete>.progress>.progress-bar {
+    width: 100%;
+}
+
 .parallax-window {
     margin-top: 40px;
     min-height: 470px;
@@ -467,6 +471,14 @@ a.btn_full_outline:hover {
     color: #333
 }
 
+#payment_action:disabled{
+    background: #eee !important;
+}
+
+#payment_action:disabled:hover{
+    background: #eee !important;
+}
+
 /*----------------------------------
    FORM
    ------------------------------------*/
@@ -664,6 +676,21 @@ td.small{
 .alert p{
     margin-left: 30px;
 }
+
+.payment_select {
+    background-color: #f0f0f0;
+    padding: 15px 15px 10px;
+    margin-bottom: 20px;
+}
+
+.payment_select i {
+    font-size: 24px;
+}
+
+.payment_select i.icon_creditcard{
+    float: right;
+}
+
 /*----------------------------------
    RESPONSIVE
    ------------------------------------*/

@@ -22,3 +22,7 @@ parameters:
     locale: fr
     max_capacity: 1000
     max_purchase_item: 10
+    stripe_key: sk_test_38PClEzE3aFXRhDXqsHBJrzo
+    mailer_from: no-reply@evaneox.com
+    mailer_reply: contact@evaneox.com
+    mailer_name: Musée du Louvre

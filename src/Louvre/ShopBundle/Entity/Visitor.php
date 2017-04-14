@@ -66,11 +66,18 @@ class Visitor
     private $country;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="reduced", type="boolean")
      */
-    private $reduced = false;
+    private $reduced;
 
     /**
      * @var string
@@ -79,6 +86,14 @@ class Visitor
      */
     private $price;
 
+    /**
+     * Constructeur
+     */
+    public function __construct()
+    {
+        $this->reduced      = false;
+        $this->type         = 'NORMAL';
+    }
 
     /**
      * Get id
@@ -99,7 +114,7 @@ class Visitor
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->name = strtolower($name);
 
         return $this;
     }
@@ -123,7 +138,7 @@ class Visitor
      */
     public function setSurname($surname)
     {
-        $this->surname = $surname;
+        $this->surname = strtolower($surname);
 
         return $this;
     }
@@ -211,6 +226,30 @@ class Visitor
     }
 
     /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Visitor
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
      * Set price
      *
      * @param string $price
@@ -267,4 +306,5 @@ class Visitor
     {
         return $this->getBirthday()->diff(new \DateTime())->y;
     }
+
 }

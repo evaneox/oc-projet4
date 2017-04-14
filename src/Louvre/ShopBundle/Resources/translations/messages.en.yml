@@ -1,3 +1,6 @@
+#############################################
+#  TRADUCTION GENERALE
+##############################################################
 site:
     description: Online ticket booking for the Louvre museum
     title: Louvre - Online ticket booking
@@ -12,9 +15,6 @@ header:
         home: Home
         legal: Legal notice
         ticketing: Ticketing
-#############################################
-#  TRADUCTION GENERALE
-##############################################################
 
 subheader:
     title: Book your tickets
@@ -31,10 +31,6 @@ footer:
 
 date_format: yyyy-mm-dd
 
-opening_hours:
-    full: 9am to 6pm
-    half: 2pm to 6pm
-
 #############################################
 #  PANNIER
 ##############################################################
@@ -45,11 +41,18 @@ Shopping_box:
     opening_hours:
         full: 9am to 6pm
         half: 2pm to 6pm
+    visitor:
+        reduced_info: reduced price
+    total: total
+
+NORMAL: normal
+SENIORS: senior
+CHILDREN: children
+REDUCED: reduced
 
 #############################################
 #  PAGE DE COMMANDE ETAPE 1
 #############################################################
-
 forgot_ticket:
     explain: In case of loss of tickets, you can retrieve them by
     action_text: clicking here
@@ -87,6 +90,46 @@ step_one:
             label: Reduced price
         visitor:
             label: Visitor ticket
+
+#############################################
+#  PAGE DE PAIEMENT ETAPE 2
+##############################################################
+step_two:
+    title: Payment
+    credit_card: Credit card
+    form:
+        email:
+            label: Email
+            placeholder: Your email address
+        card:
+            label: Card number
+            placeholder: Your credit card number
+        date:
+            label: Expiration date
+        security:
+            label: Security code
+            explain: Last 3 digits
+
+payment_fail : An error occurred during the transaction, please check your informations and retry the operation.
+
+#############################################
+#  EMAIL
+##############################################################
+email:
+    title: The Louvre ticketing
+    alt: Logo of the Louvre Museum
+
+    complete:
+        subject: Musée du Louvre - Confirmation of your order
+        title: Order completed.
+        explain: >
+            Your reservation has been validated! <br /><br />
+            You will find below the details of your order, which will be a ticket and will be asked at the entrance of the museum.
+        order_number: Code
+        visite_date: Date of visit
+        visite_hour: Time of visit
+        number_ticket: Number of tickets
+        reduced_explain: For visitors at a reduced rate do not forget to bring a receipt.
 
 #############################################
 #  PAGE MENTIONS LEGALES

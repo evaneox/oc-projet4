@@ -1,7 +1,6 @@
 #############################################
 #  TRADUCTION GENERALE
 ##############################################################
-
 site:
     description: Réservation de billets en ligne pour le site du louvre
     title: Louvre - Réservation de billets en ligne
@@ -42,11 +41,18 @@ Shopping_box:
     opening_hours:
         full: 9h à 18h
         half: 14h à 18h
+    visitor:
+        reduced_info: tarif réduit
+    total: total
+
+NORMAL: normal
+SENIORS: senior
+CHILDREN: enfant
+REDUCED: réduit
 
 #############################################
 #  PAGE DE COMMANDE ETAPE 1
 ##############################################################
-
 forgot_ticket:
     explain: En cas de perte de billets, vous pouvez les récupérer en
     action_text: cliquant ici
@@ -86,9 +92,49 @@ step_one:
             label: Billet visiteur
 
 #############################################
+#  PAGE DE PAIEMENT ETAPE 2
+##############################################################
+step_two:
+    title: Paiement
+    credit_card: Carte de crédit
+    form:
+        email:
+            label: Email
+            placeholder: Votre adresse email
+        card:
+            label: Numéro de carte
+            placeholder: Votre numéro de carte bancaire
+        date:
+            label: Date d'expiration
+        security:
+            label: Code de securité
+            explain: 3 derniers chriffres
+
+payment_fail : Une erreur s'est produite lors de la transaction, merci de vérifier vos informations et de recommencer l'opération.
+
+#############################################
+#  EMAIL
+##############################################################
+email:
+    title: Billeterie du Louvre
+    alt: Logo Musée du Louvre
+
+    complete:
+        subject: Musée du Louvre - Confirmation de votre commande
+        title: Commande complète.
+        explain: >
+            Votre réservation a bien été validé ! <br /><br />
+            Vous trouverez ci-dessous le detail de votre commande, celui-ci fera foi de billet et vous sera demandé à l'entrée du musée.
+        order_number: Code
+        visite_date: Date de la visite
+        visite_hour: Plage horaire
+        number_ticket: Nombre de billets
+        reduced_explain: Pour les visiteurs à tarif réduit n'oubliez pas de vous munir d'un justificatif.
+
+
+#############################################
 #  PAGE MENTIONS LEGALES
 ##############################################################
-
 legal:
     title: Mentions légales
     description: Consultez les mentions légales de notre site.

@@ -104,7 +104,8 @@
         _path_web_quota         = "{{ path('louvre_webservice_quota') }}";
         _full_hours             = "{{ 'Shopping_box.opening_hours.full'|trans }}";
         _half_hours             = "{{ 'Shopping_box.opening_hours.half'|trans }}";
-        _over_quota             = "{{ 'capacity_exceed'|trans }}"
+        _over_quota             = "{{ 'capacity_exceed'|trans }}";
+        _initLoader             = {% if app.request.get('_route') == 'louvre_order' %} true {% else %} false {% endif %}
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -112,6 +113,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>
     <script src="https://cdn.jsdelivr.net/sweetalert2/6.5.5/sweetalert2.min.js"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="https://js.stripe.com/v2/" type="text/javascript"></script>
+    <script src="{{ asset('js/formater.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/script.js') }}"></script>
 
 </body>

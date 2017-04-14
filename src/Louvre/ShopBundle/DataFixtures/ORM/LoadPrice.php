@@ -15,7 +15,7 @@ class LoadPrice implements FixtureInterface
             'CHILDREN'      => 8,
             'NORMAL'        => 16,
             'REDUCED'       => 10,
-            'SENIORS'       => 10
+            'SENIORS'       => 12
         );
 
         foreach($prices as $name => $value){
