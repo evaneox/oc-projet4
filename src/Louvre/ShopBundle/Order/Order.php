@@ -103,10 +103,13 @@ class Order
 
             // 3. enregistrement en base de données
             $this->em->persist($order);
-            //$this->em->flush();
+            $this->em->flush();
 
+            // 4. On envoie contenant les billets
             $this->mailer->sendTicket($order);
 
+            // 5. On efface la commande de la session
+            $this->delete($order);
         }
     }
 
