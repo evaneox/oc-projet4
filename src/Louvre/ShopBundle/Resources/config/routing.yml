@@ -14,7 +14,7 @@ louvre_payment :
 louvre_confirmation :
     path:    /order/confirmation
     defaults:    {_controller: LouvreShopBundle:Booking:orderConfirmation}
-    methods: [GET]
+    methods: [POST,GET]
 
 ## Mentions légales
 louvre_ticket_mentions:
