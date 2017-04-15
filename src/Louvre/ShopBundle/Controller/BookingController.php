@@ -5,7 +5,7 @@ namespace Louvre\ShopBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Louvre\ShopBundle\Entity\TicketOrder;
-use Louvre\ShopBundle\Form\TicketOrderType;
+use Louvre\ShopBundle\Form\Type\TicketOrderType;
 
 class BookingController extends Controller
 {

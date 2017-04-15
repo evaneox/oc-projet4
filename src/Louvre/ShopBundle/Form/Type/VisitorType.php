@@ -1,6 +1,6 @@
 <?php
 
-namespace Louvre\ShopBundle\Form;
+namespace Louvre\ShopBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

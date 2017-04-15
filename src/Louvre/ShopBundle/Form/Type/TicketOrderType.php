@@ -1,6 +1,6 @@
 <?php
 
-namespace Louvre\ShopBundle\Form;
+namespace Louvre\ShopBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Louvre\ShopBundle\Form\VisitorType;
+use Louvre\ShopBundle\Form\Type\VisitorType;
 
 class TicketOrderType extends AbstractType
 {
