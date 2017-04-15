@@ -1,7 +1,8 @@
 <?php
 
 namespace Louvre\ShopBundle\Mailer;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Templating\EngineInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 use Louvre\ShopBundle\Entity\TicketOrder;
 
 class Mailer
@@ -13,11 +14,11 @@ class Mailer
     private $reply;
     private $name;
 
-    public function __construct(ContainerInterface $container, $from, $reply, $name)
+    public function __construct(\Swift_Mailer $mailer, EngineInterface $templating ,TranslatorInterface $translator, $from, $reply, $name)
     {
-        $this->mailer       = $container->get('mailer');
-        $this->translator   = $container->get('translator');
-        $this->templating   = $container->get('templating');
+        $this->mailer       = $mailer;
+        $this->templating   = $templating;
+        $this->translator   = $translator;
         $this->from         = $from;
         $this->reply        = $reply;
         $this->name         = $name;

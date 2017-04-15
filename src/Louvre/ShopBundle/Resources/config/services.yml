@@ -30,4 +30,4 @@ services:
 
     louvre_shop.email:
         class: Louvre\ShopBundle\Mailer\Mailer
-        arguments: ["@service_container", "%mailer_from%", "%mailer_reply%", "%mailer_name%"]
+        arguments: ["@mailer", "@templating", "@translator", "%mailer_from%", "%mailer_reply%", "%mailer_name%"]
