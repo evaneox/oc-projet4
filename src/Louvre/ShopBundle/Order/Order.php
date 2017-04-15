@@ -111,4 +111,24 @@ class Order
         }
     }
 
+    public function recovery(){
+
+        // On commence par récupérer le code de réservation
+        $code = strtoupper($this->request->get('order_identifier'));
+
+        // On vérifie que le code n'est pas vide
+        if(!empty($code)){
+
+            // On recupére la commande lié au code
+            $order = $this->em->getRepository('LouvreShopBundle:TicketOrder')->findOneBy(['code' => $code]);
+
+            if(!is_null($order)){
+                // on renvoi les billets par email
+                $this->mailer->resendTicket($order);
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

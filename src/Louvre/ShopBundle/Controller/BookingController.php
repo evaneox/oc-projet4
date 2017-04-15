@@ -101,4 +101,26 @@ class BookingController extends Controller
     public function mentionsViewAction(){
         return $this->render('LouvreShopBundle:Booking:mentions.html.twig');
     }
+
+    /**
+     * Recuperation des billets perdu
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function orderRecoveryAction(Request $request){
+
+        // une demande de recupération de billet à été faite
+        if ($request->isMethod('POST')) {
+
+            // On retourne un message en fonction du résulat de la recherche
+            if($this->get('louvre_shop.order')->recovery()) {
+                $this->addFlash('message', $this->get('translator')->trans('forgot_ticket.order_found'));
+            }else {
+                $this->addFlash('error', $this->get('translator')->trans('forgot_ticket.order_not_found'));
+            }
+        }
+
+        return $this->redirectToRoute('louvre_order');
+    }
 }

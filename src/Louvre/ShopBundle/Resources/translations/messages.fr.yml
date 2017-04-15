@@ -59,8 +59,10 @@ forgot_ticket:
     form:
         identifier:
             label: Identifiant de la commande
-            placeholder: Email ou code de confirmation
+            placeholder: Code de réservation (eg ABCXXXXXXXXX)
         submit: Renvoyer
+    order_not_found: Aucune commande n'a pu être trouvée avec ce code de réservation.
+    order_found: Vos billets vous seront envoyées par email d'ici quelques instants.
 
 reduce_price_info: Pour les tarifs réduits (étudiants, employé de musée, d'un service du ministère de la culture, militaire ...) , Merci de vous munir de votre justificatif le jour de la visite.
 capacity_exceed : Désolé mais le musée semble complet pour cette date, merci de choisir une autre date.
@@ -141,6 +143,13 @@ email:
         number_ticket: Nombre de billets
         reduced_explain: Pour les visiteurs à tarif réduit n'oubliez pas de vous munir d'un justificatif.
 
+    lost:
+        subject: Musée du Louvre - Renvoi de vos billets
+        title: Recupération de la commande.
+        explain: >
+            Vous avez récemment effectué une demande de récupération de vos billets.<br /><br />
+            Vous trouverez ci-dessous le détail de votre commande, celui-ci fera foi de billet et vous serez demandé à l'entrée du musée. <br /><br />
+            Si vous n'êtes pas à l'origine de cette demande, ne vous inquiétez pas votre réservation restée valable.
 
 #############################################
 #  PAGE MENTIONS LEGALES

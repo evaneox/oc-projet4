@@ -11,14 +11,27 @@
 {% block body %}
     <div class="row">
         <div class="col-md-9">
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    {% if type == 'error' %}
+                        <div class="alert alert-danger">
+                            <ul class="list-unstyled"><li><span class="glyphicon glyphicon-exclamation-sign"></span> {{ message }}</li></ul>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success">
+                            <ul class="list-unstyled"><li><span class="glyphicon glyphicon-ok"></span> {{ message }}</li></ul>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
             <div class="bg-info alert">
                 {{ 'forgot_ticket.explain'|trans }} <a data-toggle="collapse" href="#lostTicket" aria-expanded="false" aria-controls="lostTicket">{{ 'forgot_ticket.action_text'|trans }} </a>
                 <div class="collapse" id="lostTicket">
                     <br />
-                    <form>
+                    <form action="{{ path('louvre_recovery')}}" method="POST">
                         <div class="form-group">
                             <label>{{ 'forgot_ticket.form.identifier.label'|trans }}</label>
-                            <input type="text" class="form-control" name="order_identifier" placeholder="{{ 'forgot_ticket.form.identifier.placeholder'|trans }}" required="required" autocomplete="off">
+                            <input type="text" class="form-control" name="order_identifier" placeholder="{{ 'forgot_ticket.form.identifier.placeholder'|trans }}" required="required">
                         </div>
                         <button type="submit" class="btn btn-default">{{ 'forgot_ticket.form.submit'|trans }}</button>
                     </form>

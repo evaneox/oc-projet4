@@ -58,4 +58,19 @@ class Mailer
 
     }
 
+    /**
+     * Construction d'un email pour le renvoi des tickets perdu
+     *
+     * @param TicketOrder $order
+     */
+    public function resendTicket(TicketOrder $order)
+    {
+        $to         = $order->getEmail();
+        $subject    = $this->translator->trans('email.lost.subject');
+        $body       = $this->templating->render('LouvreShopBundle:Mail:ticket_lost.html.twig', array('order' => $order));
+        $this->sendMail($to, $subject, $body);
+
+    }
+
+
 }

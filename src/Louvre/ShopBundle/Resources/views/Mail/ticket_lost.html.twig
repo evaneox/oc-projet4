@@ -1,0 +1,59 @@
+{% extends "LouvreShopBundle:Default:mail_layout.html.twig" %}
+
+{% block body %}
+    <table class="body-wrap">
+        <tr>
+            <td></td>
+            <td class="container" bgcolor="#FFFFFF">
+                <div class="content">
+                    <table>
+                        <tr>
+                            <td>
+                                <h3>{{ 'email.lost.title'|trans }}</h3>
+                                <br />
+                                <p class="lead">{{ 'email.lost.explain'|trans|raw }}</p>
+                                <br/>
+                                <hr />
+                                <br />
+                                <p class="code">{{ 'email.complete.order_number'|trans|upper }} : {{ order.code|upper }}</p>
+
+                                <table class="summary">
+                                    <tr>
+                                        <td>{{ 'email.complete.visite_date'|trans }} :</td>
+                                        <td class="right"><strong>{{ order.getEntryDate| localizeddate('medium', 'none', app.request.locale, null , 'd MMMM Y' ) }}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ 'email.complete.visite_hour'|trans }} :</td>
+                                        <td class="right"><strong>{% if not order.getFullDay %}{{ 'Shopping_box.opening_hours.half'|trans }}{% else %}{{ 'Shopping_box.opening_hours.full'|trans }}{% endif %}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ 'email.complete.number_ticket'|trans }} :</td>
+                                        <td class="right"><strong>X{{ order.getVisitors|length }}</strong></td>
+                                    </tr>
+                                </table>
+                                <hr />
+                                <table class="summary">
+                                    {% for visitor in order.getVisitors %}
+                                        <tr>
+                                            <td><strong>{{ visitor.getType |trans|upper }}</strong><br /> {{ visitor.getName|capitalize  }} {{ visitor.getSurname|capitalize  }}</td>
+                                            <td class="right"><strong class="pull-right">{{ visitor.getPrice }}€</strong></td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                                <hr />
+                                <table class="summary">
+                                    <tr>
+                                        <td colspan="2" class="total"><strong>{{ 'Shopping_box.total'|trans|upper }}<span class="right">{{ order.getTotalPrice }}€</span></strong></td>
+                                    </tr>
+                                </table>
+                                <br />
+                                <p class="callout"> * {{ 'email.complete.reduced_explain'|trans }}</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+{% endblock %}
