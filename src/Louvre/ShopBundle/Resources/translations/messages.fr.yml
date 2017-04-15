@@ -119,9 +119,7 @@ step_tree:
     title: Réservation confirmé!
     subtitle: Merci !
     code: Code de réservation
-    explain: >
-        Votre réservation à été prise en compte, vous allez recevoir d'ici quelques instants un email de confirmation.<br /><br />
-        Nous nous conseillons de conserver le code de validation ci-dessus qui vous permettra de récupérer vos billets en cas de pertes.
+    explain: Votre réservation à été prise en compte, vous allez recevoir d'ici quelques instants un email de confirmation.
     backtohome: Retourner à l'accueil
 
 #############################################

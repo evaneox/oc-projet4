@@ -119,9 +119,7 @@ step_tree:
     title: Booking confirmed!
     subtitle: Thank you !
     code: Booking Code
-    explain: >
-        Your reservation has been validated, you will receive in a few moments a confirmation email.<br /><br />
-        We recommend that you keep the above validation code, which will allow you to collect your tickets in case of losses.
+    explain: Your reservation has been validated, you will receive in a few moments a confirmation email.
     backtohome: Back to homepage
 
 
