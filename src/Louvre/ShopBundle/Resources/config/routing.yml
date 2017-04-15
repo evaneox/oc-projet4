@@ -2,21 +2,25 @@
 louvre_order :
     path:    /
     defaults:    {_controller: LouvreShopBundle:Booking:index}
+    methods: [POST,GET]
 
 ## Page de paiement
 louvre_payment :
     path:    /order/payment
     defaults:    {_controller: LouvreShopBundle:Booking:orderPayment}
+    methods: [POST,GET]
 
 ## Page de confirmation
 louvre_confirmation :
     path:    /order/confirmation
     defaults:    {_controller: LouvreShopBundle:Booking:orderConfirmation}
+    methods: [GET]
 
 ## Mentions légales
 louvre_ticket_mentions:
     path:     /legal
     defaults: { _controller: LouvreShopBundle:Booking:mentionsView}
+    methods: [GET]
 
 ## Web service quota
 louvre_webservice_quota:
