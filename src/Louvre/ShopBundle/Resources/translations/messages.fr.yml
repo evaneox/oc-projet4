@@ -41,8 +41,6 @@ Shopping_box:
     opening_hours:
         full: 9h à 18h
         half: 14h à 18h
-    visitor:
-        reduced_info: tarif réduit
     total: total
 
 NORMAL: normal

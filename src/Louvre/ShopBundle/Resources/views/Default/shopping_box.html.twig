@@ -24,13 +24,10 @@
                     <tbody>
                     {% for visitor in order.getVisitors %}
                         <tr>
-                            <td><small><strong>{{ visitor.getType |trans|upper }}</strong><br /> {{ visitor.getName|capitalize  }} {{ visitor.getSurname|capitalize  }} {% if visitor.reduced %}<i class="fa fa-star-o" aria-hidden="true"></i>{% endif %}</small></td>
+                            <td><small><strong>{{ visitor.getType |trans|upper }}</strong><br /> {{ visitor.getName|capitalize  }} {{ visitor.getSurname|capitalize  }}</small></td>
                             <td><strong class="pull-right">{{ visitor.getPrice }}€</strong></td>
                         </tr>
                     {% endfor %}
-                    <tr>
-                        <td colspan="2" class="text-left"><small>(<i class="fa fa-star-o" aria-hidden="true"></i> =  {{ 'Shopping_box.visitor.reduced_info'|trans }}</small>)</td>
-                    </tr>
                     </tbody>
                 </table>
                 <hr />
@@ -60,11 +57,8 @@
                 </table>
             {% endif %}
             <hr />
-            {% if current == 'first' %}
-                <button type="button" class="btn_full" id="booking_action">{{ 'Shopping_box.action_one'|trans }} <span class="fa fa-angle-double-right" aria-hidden="true"></span></button>
-            {% elseif current == 'second' %}
-                <button type="button" class="btn_full" id="payment_action">{{ 'Shopping_box.action_two'|trans }} <span class="fa fa-angle-double-right" aria-hidden="true"></span></button>
-            {% endif %}
+            {% if current == 'first' %}<button type="button" class="btn_full" id="booking_action">{{ 'Shopping_box.action_one'|trans }} <span class="fa fa-angle-double-right" aria-hidden="true"></span></button>{% endif %}
+            {% if current == 'second' %}<button type="button" class="btn_full" id="payment_action">{{ 'Shopping_box.action_two'|trans }} <span class="fa fa-angle-double-right" aria-hidden="true"></span></button>{% endif %}
         </div>
     </div>
 </div>

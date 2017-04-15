@@ -41,8 +41,6 @@ Shopping_box:
     opening_hours:
         full: 9am to 6pm
         half: 2pm to 6pm
-    visitor:
-        reduced_info: reduced price
     total: total
 
 NORMAL: normal
