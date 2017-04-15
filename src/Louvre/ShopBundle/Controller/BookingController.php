@@ -124,3 +124,4 @@ class BookingController extends Controller
         return $this->redirectToRoute('louvre_order');
     }
 }
+

@@ -29,3 +29,4 @@ louvre_recovery :
     path:    /order/recovery
     defaults:    {_controller: LouvreShopBundle:Booking:orderRecovery}
     methods: [POST]
+
