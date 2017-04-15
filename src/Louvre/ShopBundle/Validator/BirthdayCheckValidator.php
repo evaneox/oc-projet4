@@ -21,7 +21,7 @@ class BirthdayCheckValidator extends ConstraintValidator
     public function validate($date, Constraint $constraint)
     {
         $now = new \DateTime('now');
-        if(is_null($date) OR ($date > $now )){
+        if(is_null($date) || ($date > $now )){
             $this->context->addViolation($constraint->message);
         }
     }

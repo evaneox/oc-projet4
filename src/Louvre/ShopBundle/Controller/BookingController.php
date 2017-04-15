@@ -45,7 +45,7 @@ class BookingController extends Controller
     public function orderPaymentAction(Request $request){
 
         // Seul les utilisateur ayant une commande en cours sont autorisés à continuer
-        if(!$request->getSession()->has('order') OR is_null($request->getSession()->get('order'))){
+        if(!$request->getSession()->has('order') || is_null($request->getSession()->get('order'))){
             return $this->redirectToRoute('louvre_order');
         }
 
@@ -80,7 +80,7 @@ class BookingController extends Controller
      */
     public function orderConfirmationAction(Request $request){
         // Seul les utilisateur ayant une commande en cours sont autorisés à continuer
-        if(!$request->getSession()->has('order') OR is_null($request->getSession()->get('order'))){
+        if(!$request->getSession()->has('order') || is_null($request->getSession()->get('order'))){
             return $this->redirectToRoute('louvre_order');
         }
 

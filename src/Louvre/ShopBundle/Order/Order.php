@@ -49,7 +49,7 @@ class Order
             // Determine le tarif du billet en fonction de l'age
             if($age < 4) {
                 $priceType = self::FREE;
-            } elseif($age >= 4 AND $age < 12) {
+            } elseif($age >= 4 && $age < 12) {
                 $priceType = self::CHILDREN;
             } elseif($age >= 60) {
                 $priceType = self::SENIORS;
@@ -62,7 +62,7 @@ class Order
             // La réduction ne s'applique que pour les billets journée avec tarif normal
             if($visitor->getReduced()){
 
-                if($order->getFullDay() AND ($priceType == self::NORMAL OR $priceType == self::SENIORS ))
+                if($order->getFullDay() && ($priceType == self::NORMAL || $priceType == self::SENIORS ))
                 {
                     $reducedPrice = $this->PricingRepository->findOneBy(['name' => self::REDUCED])->getValue();
                     $Price = ($Price - $reducedPrice);

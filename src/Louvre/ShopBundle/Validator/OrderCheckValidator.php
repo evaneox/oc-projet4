@@ -42,12 +42,12 @@ class OrderCheckValidator extends ConstraintValidator
             $now  = new \DateTime('NOW');
             $date = $order->getEntryDate();
 
-            if( ($now->format('Y-m-d') == $date->format('Y-m-d')) AND ($now->format('H') > 14) AND $order->getFullDay() ){
+            if( ($now->format('Y-m-d') == $date->format('Y-m-d')) && ($now->format('H') > 14) && $order->getFullDay() ){
                 $this->context->buildViolation($constraint->messageIsTooLate)->addViolation();
             }
 
             // On ne peut pas commander le mardi, dimanche ainsi que les 1er mai, 1er novembre et 25 décembre
-            if($date->format('N') == 2 OR $date->format('N') == 7 OR $date->format('m-d') == '05-01' OR $date->format('m-d') == '11-01' OR $date->format('m-d') == '12-25'){
+            if($date->format('N') == 2 || $date->format('N') == 7 || $date->format('m-d') == '05-01' || $date->format('m-d') == '11-01' || $date->format('m-d') == '12-25'){
                 $this->context->buildViolation($constraint->messageIsClose)->addViolation();
             }
 

@@ -28,7 +28,7 @@ class Payment
     public function sendingPayment(TicketOrder $order, request $request){
 
         // On vérifie que la commande et l'adresse email est valide
-        if(is_null($order) OR !filter_var($request->get('email'), FILTER_VALIDATE_EMAIL)){
+        if(is_null($order) || !filter_var($request->get('email'), FILTER_VALIDATE_EMAIL)){
             return false;
         }
 
