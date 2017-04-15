@@ -22,7 +22,7 @@ class WebserviceController extends Controller
             $tickets                = (int) $request->get('tickets');
 
             if($this->get('louvre_shop.webservice')->checkCapacity($date, $tickets)){
-                $remainingPurchaseItemOnDate = $this->get('louvre_shop.webservice')->getRemainingTickets($date, $tickets);
+                $remainingPurchaseItemOnDate = $this->get('louvre_shop.webservice')->getRemainingTickets($date);
                 $response = ['availability' => true, 'remaining_purchase_item' => $remainingPurchaseItemOnDate ];
             }else{
                 $response =  ['availability' => false];

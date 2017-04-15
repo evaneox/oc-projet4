@@ -36,7 +36,6 @@ class Order
     public function create(TicketOrder $order)
     {
         $this->visitors = $order->getVisitors();
-        $now            = new \DateTime();
 
         // Pour chaque visiteurs on va déterminer le prix de leurs billet en fonction
         // 1.de l'age du visiteurs

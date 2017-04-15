@@ -38,7 +38,7 @@ class Payment
         // Si le paiement n'est pas valide pour notre cas, on retourne false
         // afin d'afficher un message global à l'utilisateur.
         try {
-            $charge = \Stripe\Charge::create(array(
+            \Stripe\Charge::create(array(
                 "amount"        => $order->getTotalPrice() * 100 ,
                 "currency"      => "eur",
                 "description"   => "Musée du Louvre - Paiement des billets",

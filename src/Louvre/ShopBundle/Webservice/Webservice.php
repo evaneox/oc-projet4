@@ -12,7 +12,7 @@ class Webservice
 
     public function __construct(EntityManager $entityManager, $maxCapacity, $maxPurchaseItem)
     {
-        $this->em           = $entityManager;
+        $this->em               = $entityManager;
         $this->maxCapacity      = (int) $maxCapacity;
         $this->maxPurchaseItem  = (int) $maxPurchaseItem;
     }
@@ -35,10 +35,9 @@ class Webservice
      * Retourne le nombre de tickets restant à hauteur du nombre maximum autorisé
      *
      * @param \DateTime $date
-     * @param $tickets
      * @return int
      */
-    public function getRemainingTickets(\DateTime $date, $tickets)
+    public function getRemainingTickets(\DateTime $date)
     {
         $totalTicketForThisDate = $this->getNumberTicketFor($date);
 
