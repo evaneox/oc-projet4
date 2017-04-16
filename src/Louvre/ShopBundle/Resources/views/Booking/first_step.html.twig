@@ -49,7 +49,7 @@
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label>{{ 'step_one.form.entry_date.label'|trans }}</label>
-                            <div class="input-group date" id="datetimepicker">
+                            <div class="input-group date" id="datetimepicker" title="{{ 'step_one.form.entry_date.bulle'|trans }}">
                                 <span class="input-group-addon" id="dateTimeControl">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -64,6 +64,7 @@
                             <select id="ticketCounterControl" class="form-control" disabled="disabled">
                                 <option value="1">1</option>
                             </select>
+                            <span class="pull-left"><small>* {{ 'step_one.form.ticket_counter.info'|trans }}</small></span>
                         </div>
                     </div>
                 </div>
@@ -97,7 +98,7 @@
                 {% endmacro %}
                 <div id="tickets_visitors" data-prototype="{% filter escape %}{% include 'LouvreShopBundle:Form:visitorType.html.twig' with { 'form': form.visitors.vars.prototype } %}{% endfilter %}">
                     {% for visitor in form.visitors %}
-                        {{ _self.prototype(visitor) }}
+                    {% if visitor %}{{ _self.prototype(visitor) }}{% endif %}
                     {% endfor %}
                 </div>
                 {{ form_end(form) }}

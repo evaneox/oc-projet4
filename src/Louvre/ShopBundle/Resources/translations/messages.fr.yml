@@ -74,8 +74,10 @@ step_one:
             full: Journée
             half: Demi-journée
             error_message: Merci de choisir la date de votre visite
+            bulle: cliquez sur le calendrier pour choisir une date
         ticket_counter:
             label: Nombre de billets
+            info: Pour plus de 10 billets merci d'envoyer un email
         name:
             label: Prénom
             placeholder: Votre prénom

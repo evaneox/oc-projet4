@@ -73,9 +73,11 @@ step_one:
             label: Date of visit
             full: Full day
             half: Half day
-            error_message: Merci de choisir la date de votre visite
+            error_message: Please choose the date of your visit
+            bulle: Click on the calendar to choose a date
         ticket_counter:
             label: Number of tickets
+            info: For more than 10 tickets please send email
         name:
             label: Name
             placeholder: Your name
