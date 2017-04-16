@@ -4,9 +4,9 @@ namespace Louvre\ShopBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class BookingControllerTest extends WebTestCase
 {
-    public function testIndex()
+    public function testHomePage()
     {
         $client = static::createClient();
 
