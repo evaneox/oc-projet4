@@ -6,12 +6,23 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class BookingControllerTest extends WebTestCase
 {
-    public function testHomePage()
+    /**
+     *  Vérification de la réponse de la page de commande
+     */
+    public function testHomePageResponse()
     {
         $client = static::createClient();
-
         $crawler = $client->request('GET', '/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
 
-        $this->assertContains('Hello World', $client->getResponse()->getContent());
+    /**
+     *  Vérification de la réponse de la page de commande
+     */
+    public function testPaymentResponse()
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/order/payment');
+        $this->assertEquals(304, $client->getResponse()->getStatusCode());
     }
 }
