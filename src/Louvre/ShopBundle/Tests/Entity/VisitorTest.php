@@ -11,13 +11,11 @@ class VisitorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGettersAndSetters()
     {
-        $visitor = new Visitor();
 
         $birthday = new \DateTime('1985-07-18');
 
-        /*******************
-         * Hydratation d'un visiteur
-         */
+        // Création d'un visiteur
+        $visitor = new Visitor();
         $visitor->setname('Zozor');
         $visitor->setSurname('Super');
         $visitor->setBirthday($birthday);
@@ -25,15 +23,23 @@ class VisitorTest extends \PHPUnit_Framework_TestCase
         $visitor->setReduced(true);
         $visitor->setPrice(10);
 
-        /*******************
-         * Comparaison des résulats
-         */
-        $this->assertEquals('zozor', $visitor->getName());          // Résulat forcé en minuscule
-        $this->assertEquals('super', $visitor->getSurname());       // Résulat forcé en minuscule
+        // prénom a bien été mit en minuscule et identique à celui injecter par le setter
+        $this->assertEquals('zozor', $visitor->getName());
+
+        // nom a bien été mit en minuscule et identique à celui injecter par le setter
+        $this->assertEquals('super', $visitor->getSurname());
+
+        // identque à celui injecter par le setter
         $this->assertEquals($birthday, $visitor->getBirthday());
+
+        // identque à celui injecter par le setter
         $this->assertEquals(true, $visitor->getReduced());
+
+        // identque à celui injecter par le setter
         $this->assertEquals(10, $visitor->getPrice());
-        $this->assertEquals($visitor->getBirthday()->diff(new \DateTime())->y, $visitor->getAge()); // On vérifie que le calcule de l'age est correcte.
+
+        // On vérifie que le calcul de l'age est correcte.
+        $this->assertEquals($visitor->getBirthday()->diff(new \DateTime())->y, $visitor->getAge());
     }
 }
 

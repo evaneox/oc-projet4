@@ -12,23 +12,26 @@ class TicketsOrderTest extends \PHPUnit_Framework_TestCase
      */
     public function testGettersAndSetters()
     {
-        $order = new TicketOrder();
 
-        /*******************
-         * Hydratation d'une commande
-         */
+        // Creation d'une commande
+        $order = new TicketOrder();
         $order->setEmail('EXEMPLE@TLD.COM');
         $order->setFullDay(false);
         $order->setEntryDate(new \DateTime());
         $order->setCode('SUPERCODE123456');
 
-        /*******************
-         * Comparaison des résulats
-         */
-        $this->assertEquals('exemple@tld.com', $order->getEmail());         // Résulat forcé en minuscule
+
+        // Email a bien été mit en minuscule et identique à celui injecter par le setter
+        $this->assertEquals('exemple@tld.com', $order->getEmail());
+
+        // Identique à celui injecter par le setter
         $this->assertEquals(false, $order->getFullDay());
-        $this->assertInstanceOf(DateTime::class, $order->getCreatedDate()); // On vérifie qu'on récupére bien une instance de datetime
-        $this->assertEquals('supercode123456', $order->getCode());          // Résulat forcé en minuscule
+
+        // On vérifie qu'on récupére bien une instance de datetime
+        $this->assertInstanceOf(DateTime::class, $order->getCreatedDate());
+
+        // Code de vérification a bien été mit en minuscule et identique à celui injecter par le setter
+        $this->assertEquals('supercode123456', $order->getCode());
     }
 }
 
