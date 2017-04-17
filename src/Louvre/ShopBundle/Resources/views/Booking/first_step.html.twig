@@ -101,6 +101,7 @@
                     {% if visitor %}{{ _self.prototype(visitor) }}{% endif %}
                     {% endfor %}
                 </div>
+                {{ form_row(form._token) }}
                 {{ form_end(form) }}
             </div>
         </div>
