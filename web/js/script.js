@@ -312,8 +312,8 @@ jQuery(function($) {
         var message;
 
         $payment_action.attr('disabled', true);
-
-        if(validateEmail($payment_form.find('input[name=email]').val())){
+        var $email = $payment_form.find('input[name=email]').val();
+        if(validateEmail($email)){
             Stripe.card.createToken($payment_form , function(status, response){
                 if(response.error){
                     message = (response.error.type == 'card_error') ? errorMessages[ response.error.code ] : response.error.message;
@@ -327,8 +327,6 @@ jQuery(function($) {
         }else{
             displayErrorMessage(errorMessages['invalid_email']);
         }
-
-
     });
 
     /**
@@ -338,8 +336,7 @@ jQuery(function($) {
      * @returns {boolean}
      */
     function validateEmail($email) {
-        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-        return emailReg.test( $email );
+        return $email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/);
     }
 
     /**
