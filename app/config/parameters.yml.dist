@@ -6,7 +6,7 @@ parameters:
     database_port: 3306
     database_name: oc_projet_4
     database_user: root
-    database_password: iopiop10
+    database_password:
     # You should uncomment this if you want to use pdo_sqlite
     #database_path: "%kernel.root_dir%/data.db3"
 
